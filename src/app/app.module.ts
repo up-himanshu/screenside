@@ -6,6 +6,7 @@ import { InicioSesionComponent } from './componentes/generales/usuario/inicio-se
 import { RegistroComponent } from './componentes/generales/usuario/registro/registro.component';
 import { MenuComponent } from './componentes/generales/menu/menu/menu.component';
 import { JuegoComponent } from './componentes/generales/menu/juego/juego.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { JuegoComponent } from './componentes/generales/menu/juego/juego.compone
     JuegoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
