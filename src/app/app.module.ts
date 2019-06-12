@@ -7,6 +7,7 @@ import { RegistroComponent } from './componentes/generales/usuario/registro/regi
 import { MenuComponent } from './componentes/generales/menu/menu/menu.component';
 import { JuegoComponent } from './componentes/generales/menu/juego/juego.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NavbarComponent } from './componentes/generales/menu/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
     InicioSesionComponent,
     RegistroComponent,
     MenuComponent,
-    JuegoComponent
+    JuegoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
