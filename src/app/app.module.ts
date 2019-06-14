@@ -8,6 +8,8 @@ import { MenuComponent } from './componentes/generales/menu/menu/menu.component'
 import { JuegoComponent } from './componentes/generales/menu/juego/juego.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './componentes/generales/menu/navbar/navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { NavbarComponent } from './componentes/generales/menu/navbar/navbar.comp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
