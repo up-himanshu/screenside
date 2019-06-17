@@ -10,7 +10,8 @@ const appRoutes: Routes = [
   {path: '', component: InicioSesionComponent },
   {path: 'registro', component: RegistroComponent},
   {path: 'puntuaje', component: PuntuajeComponent},
-  {path: 'juego', component: JuegoComponent}
+  {path: 'juego', component: JuegoComponent},
+  { path: '**', redirectTo: '' }
 ];
 @NgModule({
   declarations: [],
