@@ -19,7 +19,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-            <input type="password" class="form-control" placeholder="contrasña" formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }">
+            <input type="password" class="form-control" placeholder="contraseña" formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }">
             <div *ngIf="submitted && f['contrasena'].errors" class="invalid-feedback">
               <div *ngIf="f['contrasena'].errors.required">Contraseña Requerida</div>
           </div>

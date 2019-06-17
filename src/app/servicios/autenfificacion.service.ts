@@ -18,8 +18,8 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(usuario: string, contrasena: string) {
-        return this.http.post<any>('localhost:3333/users/authenticate', { usuario, contrasena })
+    login(correo: string, contrasena: string) {
+        return this.http.post<any>('http://127.0.0.1:3333/login', { correo, contrasena })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user) {

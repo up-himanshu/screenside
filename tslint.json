@@ -2,10 +2,11 @@
   "extends": "tslint:recommended",
   "rulesDirectory": [
     "codelyzer"
-  ],
+  ],  
   "rules": {
     "array-type": false,
-    "arrow-parens": false,
+    "no-any": true,
+    "arrow-parens": false,    
     "deprecation": {
       "severity": "warn"
     },
@@ -60,6 +61,7 @@
       true,
       "single"
     ],
+    "jsEnable": false,
     "trailing-comma": false,
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,

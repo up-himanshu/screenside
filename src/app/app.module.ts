@@ -7,9 +7,9 @@ import { RegistroComponent } from './componentes/generales/usuario/registro/regi
 import { MenuComponent } from './componentes/generales/menu/menu/menu.component';
 import { JuegoComponent } from './componentes/generales/menu/juego/juego.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NavbarComponent } from './componentes/generales/menu/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaje.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     RegistroComponent,
     MenuComponent,
     JuegoComponent,
-    NavbarComponent
+    PuntuajeComponent
   ],
   imports: [
     BrowserModule,

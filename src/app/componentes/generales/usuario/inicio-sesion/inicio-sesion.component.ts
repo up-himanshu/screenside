@@ -27,7 +27,7 @@ export class InicioSesionComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      usuario: ['', Validators.required],
+      usuario: ['', [Validators.required,Validators.email]],
       contrasena: ['', Validators.required]
     });
 
@@ -57,7 +57,4 @@ export class InicioSesionComponent implements OnInit {
                   this.loading = false;
               });
   }
-
-
-
 }

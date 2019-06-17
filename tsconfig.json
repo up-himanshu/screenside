@@ -1,6 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "alwaysStrict": false,
+    "allowJs": false,
+    "checkJs":false,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -9,7 +12,13 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
+    "importHelpers": true,    
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "noImplicitReturns":true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": false,
+    "strict":false,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
