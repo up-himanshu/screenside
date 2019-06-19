@@ -17,9 +17,13 @@ export class AuthenticationService {
     public get currentUserValue(): Usuario {
         return this.currentUserSubject.value;
     }
+    /*
+    public get loggedIn(): boolean{
+        return localStorage.getItem('currentUser') !==  null;
+      }
 
-    login(correo: string, contrasena: string) {
-        return this.http.post<any>('http://127.0.0.1:3333/login', { correo, contrasena })
+    login(usuario: string, contrasena: string) {
+        return this.http.post<any>('http://127.0.0.1:3333/login', { usuario, contrasena })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user) {
@@ -31,7 +35,21 @@ export class AuthenticationService {
                 return user;
             }));
     }
+*/
+login(correo: string, contrasena: string) {
+    return this.http.post<any>('http://127.0.0.1:3333/login', { correo, contrasena })
+        .pipe(map(user => {
+            // login successful if there's a jwt token in the response
+            if (user && user.token) {                
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+                console.log('I arrived to login function')
+            }
 
+            return user;
+        }));
+}
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

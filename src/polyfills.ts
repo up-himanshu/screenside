@@ -63,4 +63,4 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  */
 import '@babel/polyfill';
 import '@adonisjs/websocket-client';
-// import 'core-js/features/reflect';
+import 'core-js/es7/reflect';

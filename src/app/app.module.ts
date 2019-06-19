@@ -8,8 +8,10 @@ import { MenuComponent } from './componentes/generales/menu/menu/menu.component'
 import { JuegoComponent } from './componentes/generales/menu/juego/juego.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaje.component';
+import { JwtinterceptorService } from './servicios/jwtinterceptor.service';
+import { ErrorinterceptorService } from './servicios/errorinterceptor.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,10 @@ import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaj
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtinterceptorService, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorinterceptorService,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

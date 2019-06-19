@@ -11,13 +11,20 @@ export class AutentificacionGuard implements CanActivate {
 ) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authenticationService.currentUserValue;
-    if (currentUser) {
+    if (currentUser) {      
         // logged in so return true        
+          // check if route is restricted by role
+          if (route.data.isAdmin) {
+            // role not authorised so redirect to home page
+            this.router.navigate(['perfil']);
+            return false;
+        }
+         // authorised so return true
         return true;
     }
 
     // not logged in so redirect to login page with the return url
-    this.router.navigate(['/iniciosesion'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/'], { queryParams: { returnUrl: state.url } });
     return false;
 }
 }

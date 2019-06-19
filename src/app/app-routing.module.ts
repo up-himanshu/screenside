@@ -5,13 +5,36 @@ import { InicioSesionComponent } from './componentes/generales/usuario/inicio-se
 import { RegistroComponent } from './componentes/generales/usuario/registro/registro.component';
 import { JuegoComponent } from './componentes/generales/menu/juego/juego.component';
 import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaje.component';
+import { AutentificacionGuard } from './guardianes/credenciales/autentificacion.guard';
+import { MenuComponent } from './componentes/generales/menu/menu/menu.component';
 
 const appRoutes: Routes = [
-  {path: '', component: InicioSesionComponent },
-  {path: 'registro', component: RegistroComponent},
-  {path: 'puntuaje', component: PuntuajeComponent},
-  {path: 'juego', component: JuegoComponent},
-  { path: '**', redirectTo: '' }
+  {
+    path: '', 
+    component: InicioSesionComponent,          
+  },
+  {
+    path: 'registro', 
+    component: RegistroComponent,    
+  },
+  {
+    path: 'puntuaje', component: PuntuajeComponent,
+    canActivate: [AutentificacionGuard],
+    data: { isAdmin: [false]}
+  },
+  {
+    path: 'juego', component: JuegoComponent,
+    canActivate: [AutentificacionGuard],
+    data: { isAdmin: [false]}
+  },
+  {
+    path: 'perfil', component: MenuComponent,
+    canActivate: [AutentificacionGuard],
+    data: { isAdmin: [false]}
+  },
+  { 
+    path: '**', redirectTo: '' 
+  }
 ];
 @NgModule({
   declarations: [],

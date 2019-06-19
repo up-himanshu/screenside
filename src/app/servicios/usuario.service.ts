@@ -10,6 +10,9 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
   getAll() {
-    return this.http.get<Usuario[]>('localhost:3333/users/authenticate');
+    return this.http.get<Usuario[]>(`${config.apiUrl}`);
+}
+getByID(id:number){ 
+  return this.http.get<Usuario>(`http://127.0.0.1:3333/get/${id}`);
 }
 }

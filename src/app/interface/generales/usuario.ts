@@ -4,4 +4,5 @@ export interface Usuario {
   contrasena: string;
   nombre: string;
   token?: string;
+  admin:boolean;
 }

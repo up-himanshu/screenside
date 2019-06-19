@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { AuthenticationService } from 'src/app/servicios/autenfificacion.service';
 import { first } from 'rxjs/operators';
+import { Usuario } from 'src/app/interface/generales/usuario';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -17,22 +18,31 @@ export class InicioSesionComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error = '';
+  currentUser: Usuario;
 
   constructor(
    private formBuilder: FormBuilder,
    private route: ActivatedRoute,
    private router: Router,
    private authenticationService: AuthenticationService
-  ) { }
+  ) {
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) { 
+      this.router.navigate(['perfil']);
+  }
+    this.currentUser = this.authenticationService.currentUserValue; 
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       usuario: ['', [Validators.required,Validators.email]],
       contrasena: ['', Validators.required]
     });
-
-    //this.authenticationService.logout();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      // reset login status
+      this.authenticationService.logout();
+  // get return url from route parameters or default to '/'
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'perfil';
+    this.returnUrl = this.route.snapshot.queryParams['perfil']||'perfil';
   }
 
   get f() { return this.loginForm.controls; }

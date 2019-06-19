@@ -6,13 +6,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/']">Jugar</a>        
+        <a class="nav-link" [routerLink]="['perfil']" *ngIf="isAdmin" >Perfil</a>        
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/']">Registro</a>
+        <a class="nav-link" [routerLink]="['registro']">Registro</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/']">Puntuaje</a> <!-- Puntuaje y Perfil van juntos-->
+        <a class="nav-link" [routerLink]="['puntuaje']">Puntuaje</a> <!-- Puntuaje y Perfil van juntos-->
       </li>     
     </ul>
     </div>
