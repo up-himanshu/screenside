@@ -14,44 +14,28 @@ export class AuthenticationService {
         this.currentUserSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
+    
     public get currentUserValue(): Usuario {
         return this.currentUserSubject.value;
-    }
-    /*
-    public get loggedIn(): boolean{
-        return localStorage.getItem('currentUser') !==  null;
-      }
+    }     
 
-    login(usuario: string, contrasena: string) {
-        return this.http.post<any>('http://127.0.0.1:3333/login', { usuario, contrasena })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
-
-                return user;
-            }));
-    }
-*/
 login(correo: string, contrasena: string) {
     return this.http.post<any>('http://127.0.0.1:3333/login', { correo, contrasena })
         .pipe(map(user => {
             // login successful if there's a jwt token in the response
             if (user && user.token) {                
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                console.log('I arrived to login function')
+                localStorage.setItem('currentUser', JSON.stringify(user));                
+                this.currentUserSubject.next(user);  
+                // console.log('There IS token');  
             }
-
+            // console.log('There is NO token');
             return user;
         }));
 }
     logout() {
         // remove user from local storage to log user out
+        console.log('Logout')
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }

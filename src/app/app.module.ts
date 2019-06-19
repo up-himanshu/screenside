@@ -9,6 +9,7 @@ import { JuegoComponent } from './componentes/generales/menu/juego/juego.compone
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ComponentFixtureAutoDetect } from '@angular/core/testing'
 import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaje.component';
 import { JwtinterceptorService } from './servicios/jwtinterceptor.service';
 import { ErrorinterceptorService } from './servicios/errorinterceptor.service';
@@ -30,7 +31,8 @@ import { ErrorinterceptorService } from './servicios/errorinterceptor.service';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtinterceptorService, multi:true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorinterceptorService,multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorinterceptorService,multi:true},
+    {provide: ComponentFixtureAutoDetect,useValue:true}
   ],
   bootstrap: [AppComponent]
 })

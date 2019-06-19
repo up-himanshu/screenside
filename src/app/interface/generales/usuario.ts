@@ -1,8 +1,7 @@
 export interface Usuario {
   id: number;
-  usuario: string;
-  contrasena: string;
-  nombre: string;
+  usuario: string;  
+  correo: string;
   token?: string;
-  admin:boolean;
+  rol:string;
 }

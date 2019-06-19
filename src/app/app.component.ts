@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthenticationService } from 'src/app/servicios/autenfificacion.service';
 import { Usuario } from 'src/app/interface/generales/usuario';
+import { Role } from './interface/generales/roles';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent {
 }
 
 get isAdmin() {
-  return this.currentUser && this.currentUser.admin == true;
+  return this.currentUser && this.currentUser.rol === Role.admin;
 }
 logout() {
     this.authenticationService.logout();

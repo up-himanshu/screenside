@@ -39,10 +39,10 @@ export class InicioSesionComponent implements OnInit {
       contrasena: ['', Validators.required]
     });
       // reset login status
-      this.authenticationService.logout();
+      // this.authenticationService.logout();
   // get return url from route parameters or default to '/'
     // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'perfil';
-    this.returnUrl = this.route.snapshot.queryParams['perfil']||'perfil';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'perfil';
   }
 
   get f() { return this.loginForm.controls; }
@@ -54,15 +54,17 @@ export class InicioSesionComponent implements OnInit {
       if (this.loginForm.invalid) {
           return;
       }
-
+      // console.log(this.returnUrl);
       this.loading = true;
       this.authenticationService.login(this.f.usuario.value, this.f.contrasena.value)
           .pipe(first())
           .subscribe(
               data => {
-                  this.router.navigate([this.returnUrl]);
+                // console.log('I get there')
+                   this.router.navigate([this.returnUrl]);
               },
               error => {
+                // Error que viene del servidor con 
                   this.error = error;
                   this.loading = false;
               });

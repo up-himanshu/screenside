@@ -7,6 +7,7 @@ import { JuegoComponent } from './componentes/generales/menu/juego/juego.compone
 import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaje.component';
 import { AutentificacionGuard } from './guardianes/credenciales/autentificacion.guard';
 import { MenuComponent } from './componentes/generales/menu/menu/menu.component';
+import { Role } from './interface/generales/roles';
 
 const appRoutes: Routes = [
   {
@@ -20,17 +21,16 @@ const appRoutes: Routes = [
   {
     path: 'puntuaje', component: PuntuajeComponent,
     canActivate: [AutentificacionGuard],
-    data: { isAdmin: [false]}
+    data: { roles: [Role.user]}
   },
   {
     path: 'juego', component: JuegoComponent,
     canActivate: [AutentificacionGuard],
-    data: { isAdmin: [false]}
+    data: { roles: [Role.user]}
   },
   {
     path: 'perfil', component: MenuComponent,
-    canActivate: [AutentificacionGuard],
-    data: { isAdmin: [false]}
+    canActivate: [AutentificacionGuard]    
   },
   { 
     path: '**', redirectTo: '' 

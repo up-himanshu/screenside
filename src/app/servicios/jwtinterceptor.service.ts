@@ -12,9 +12,9 @@ export class JwtinterceptorService implements HttpInterceptor{
     let currentUser = this.servicioAutent.currentUserValue;
     if(currentUser && currentUser.token) {
       req = req.clone({
-        setHeaders:{
-          Authorization: `Bearer ${currentUser.token}`
-        }
+       setHeaders:{ 
+           Authorization: `Bearer ${currentUser.token}`
+       }
       });
     }
 //  throw new Error("Method not implemented.");

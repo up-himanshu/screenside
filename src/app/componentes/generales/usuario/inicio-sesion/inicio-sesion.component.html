@@ -27,6 +27,9 @@
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">
 					</div>
+					<br>
+					<br>					
+					<div *ngIf="error" class="alert alert-danger">{{error}}</div>
 				</form>
 			</div>
 		</div>
