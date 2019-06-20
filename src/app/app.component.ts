@@ -24,8 +24,8 @@ export class AppComponent {
 get isAdmin() {
   return this.currentUser && this.currentUser.rol === Role.admin;
 }
-logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
+logout() {  
+    this.authenticationService.logout();    
+    this.router.navigate(['/login']);    
 }
 }

@@ -23,9 +23,7 @@ export class MenuComponent implements OnInit {
     this.userService.getByID(this.currentUser.id).pipe(first()).subscribe(
       user => {
         this.userFromApi= user;
-      });
-      // console.log(this.currentUser);
-      console.log(this.userFromApi);
+      });     
   }
 
 }

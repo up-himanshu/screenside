@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/servicios/autenfificacion.service';
 import { first } from 'rxjs/operators';
+import { Usuario } from 'src/app/interface/generales/usuario';
 
 @Component({
   selector: 'app-registro',
@@ -11,7 +12,7 @@ import { first } from 'rxjs/operators';
 })
 export class RegistroComponent implements OnInit {
 
-  loginForm: FormGroup;
+  registerForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
@@ -25,27 +26,34 @@ export class RegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      usuario: ['',Validators.required],
+      contrasena: ['',[Validators.required, Validators.minLength(6)]],
+      correo: ['',[Validators.required, Validators.email]]
+    });
   }
 
-  get f() { return this.loginForm.controls; }
+  get f() { return this.registerForm.controls; }
   onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.loginForm.invalid) {
+    if (this.registerForm.invalid) {
         return;
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.usuario.value, this.f.contrasena.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-                this.router.navigate([this.returnUrl]);
-            },
-            error => {
-                this.error = error;
-                this.loading = false;
-            });
+    this.authenticationService.register(this.f.correo.value, this.f.contrasena.value,this.f.usuario.value)
+      .pipe(first())
+      .subscribe(
+              data => {
+                // console.log('I get there')
+                   this.router.navigate([this.returnUrl]);
+              },
+              error => {
+                // Error que viene del servidor con 
+                  this.error = error;
+                  this.loading = false;
+              });
     }
 }

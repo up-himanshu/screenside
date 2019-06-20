@@ -9,11 +9,11 @@ export class JwtinterceptorService implements HttpInterceptor{
   
   intercept(req: import("@angular/common/http").HttpRequest<any>, next: import("@angular/common/http").HttpHandler): import("rxjs").Observable<import("@angular/common/http").HttpEvent<any>> {
     // add authorization header with jwt token if available
-    let currentUser = this.servicioAutent.currentUserValue;
+    let currentUser = this.servicioAutent.currentUserValue;    
     if(currentUser && currentUser.token) {
       req = req.clone({
        setHeaders:{ 
-           Authorization: `Bearer ${currentUser.token}`
+           Authorization: `Bearer ${currentUser.token.token}`
        }
       });
     }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { Usuario } from 'src/app/interface/generales/usuario';
 
@@ -34,9 +34,14 @@ login(correo: string, contrasena: string) {
         }));
 }
     logout() {
-        // remove user from local storage to log user out
-        console.log('Logout')
+        // remove user from local storage to log user out        
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+    }
+    register(correo: string, contrasena: string, usuario: string){
+        return this.http.post<any>('http://127.0.0.1:3333/register',{correo,usuario,contrasena})
+        .pipe(map(user => {             
+            return user;    
+        }))
     }
 }
