@@ -1,36 +1,37 @@
 import { Injectable } from '@angular/core';
-import * as Ws from '@adonisjs/websocket-client';
-
+declare const adonis: any;
 
 @Injectable({
   providedIn: 'root'
 })
-export class JugadorService {
-  private isConnected= true;
-  private ws = Ws('ws://localhost:3333');
-  constructor() { }
-  
-conexionAbierta()
-{
-  this.ws.on('open', () => {
-    this.isConnected = true
-  })
-}
-conenexionCerrada() {
-  this.ws.on('close', () => {
-    this.isConnected = false
-  })
-}
+export class JugadorService {  
+   private ws = adonis.Ws('ws://localhost:3333');
+   private chat;
+   private isConnected = false;
+  constructor() {      
+  }
+  conectar(){
+    this.ws.connect();
+  }
+  subscribir(){
+    this.chat = this.ws.subscribe('chat');
+  }
+  openEvent(){  
+    this.ws.on('open', () => {
+      this.isConnected = true
+    })   
+  }
+  closeEvent(){
+    this.ws.on('close', () => {
+      this.isConnected = false
+    })
+  }
+  emitMessage(){
+    this.chat.emit('message', {
+      body: 'hello',
+      user: 'virk'
+    })
+  }
 
-// 
-subscribir() {
-  this.ws.subscribe('chat')
-}
-/*
-const chat = ws.subscribe('chat')
-
-chat.on('ready', () => {
-  chat.emit('message', 'hello')
-})
- */
+ 
 }

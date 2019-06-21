@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     data: { roles: [Role.user]}
   },
   {
-    path: 'juego', component: JuegoComponent,
+    path: 'jugar', component: JuegoComponent,
     canActivate: [AutentificacionGuard],
     data: { roles: [Role.user]}
   },

@@ -15,4 +15,7 @@ export class UsuarioService {
 getByID(id:number){ 
   return this.http.get<Usuario>(`http://127.0.0.1:3333/get/${id}`);
 }
+register(user){
+  return this.http.post('http://127.0.0.1:3333/register',user);
+}
 }

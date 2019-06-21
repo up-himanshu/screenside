@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/servicios/autenfificacion.service';
 import { first } from 'rxjs/operators';
 import { Usuario } from 'src/app/interface/generales/usuario';
+import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-registro',
@@ -15,15 +17,19 @@ export class RegistroComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
+  // returnUrl: string;
   error = '';
   constructor(
-    private formBuilder: FormBuilder,
-   private route: ActivatedRoute,
+    private formBuilder: FormBuilder,   
+    private userService: UsuarioService,
    private router: Router,
    private authenticationService: AuthenticationService
   
-  ) { }
+  ) { 
+    //redirect to home if already logged in
+    if(this.authenticationService.currentUserValue){
+    this.router.navigate(['perfil']);
+  }}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -43,17 +49,29 @@ export class RegistroComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.register(this.f.correo.value, this.f.contrasena.value,this.f.usuario.value)
-      .pipe(first())
-      .subscribe(
-              data => {
-                // console.log('I get there')
-                   this.router.navigate([this.returnUrl]);
-              },
-              error => {
-                // Error que viene del servidor con 
-                  this.error = error;
-                  this.loading = false;
-              });
+    this.userService.register(this.registerForm.value)
+    .pipe(first())
+    .subscribe(
+      data => {
+        this.router.navigate(['/'], {queryParams: {registered:true}});
+      },
+      error => {
+        this.error = error;
+        this.loading = false;
+      });   
+    }
+    // Alerts
+    alerts: any[] = [];
+   
+    add(): void {
+      this.alerts.push({
+        type: 'info',
+        msg: `${this.error}`,
+        timeout: 5000
+      });
+    }
+   
+    onClosed(dismissedAlert: AlertComponent): void {
+      this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
     }
 }

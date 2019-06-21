@@ -13,6 +13,7 @@ import { ComponentFixtureAutoDetect } from '@angular/core/testing'
 import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaje.component';
 import { JwtinterceptorService } from './servicios/jwtinterceptor.service';
 import { ErrorinterceptorService } from './servicios/errorinterceptor.service';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ErrorinterceptorService } from './servicios/errorinterceptor.service';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtinterceptorService, multi:true},
