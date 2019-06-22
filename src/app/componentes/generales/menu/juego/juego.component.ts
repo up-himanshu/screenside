@@ -12,20 +12,19 @@ import { JugadorService } from 'src/app/servicios/jugador.service';
 export class JuegoComponent implements OnInit {
   player: Usuario[] = [];
   constructor(private userService: UsuarioService, private playerService: JugadorService) { }
+public datos:any
+public dato2s:any;
+  ngOnInit() {  
+      this.playerService.conectar();
 
-  ngOnInit() {    
+      this.datos   =  JSON.stringify( this.playerService.mensaje); 
+    
   }
-  suscribir(){    
-   this.playerService.conectar();   
-   this.playerService.subscribir();
-  }
-  mensaje(){
-    this.playerService.emitMessage();
-  }
-  recibir(){
-    this.playerService.retrieveMessage();
-  }
+  
   cerrar(){
+    alert(this.datos);
     this.playerService.desconectar();
   }
+
+  
 }
