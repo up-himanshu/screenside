@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+    mode: 'production',
     entry: './src/main.ts',
     module: {
         rules: [
@@ -33,7 +34,8 @@ module.exports = {
             // global app config object
             config: JSON.stringify({
                 apiUrl: 'http://localhost:4000'
-            })
+            }),           
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         })
     ],
     optimization: {

@@ -22,5 +22,10 @@ export class JuegoComponent implements OnInit {
   mensaje(){
     this.playerService.emitMessage();
   }
-  
+  recibir(){
+    this.playerService.retrieveMessage();
+  }
+  cerrar(){
+    this.playerService.desconectar();
+  }
 }
