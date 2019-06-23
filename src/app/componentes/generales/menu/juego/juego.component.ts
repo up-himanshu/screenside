@@ -23,6 +23,7 @@ public cargando=false;
 
   ngOnInit() {  
     
+    
     this.playerService.conectar();
     this.playerService.currentMessage.subscribe(isOpen  => {
 

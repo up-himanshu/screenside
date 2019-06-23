@@ -44,6 +44,7 @@ export class JugadorService {
     });
 
    
+    
 
     player.on('message', (event) => {
       
