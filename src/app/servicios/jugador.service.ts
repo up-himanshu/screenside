@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from './autenfificacion.service';
 import { Usuario } from '../interface/generales/usuario';
+import { BehaviorSubject } from 'rxjs';
 declare const adonis: any;
 
 @Injectable({
@@ -10,17 +11,21 @@ export class JugadorService {
    private ws = adonis.Ws('ws://localhost:3333');
   // private wsp = adonis.wsp.codes;
    private chat;
-   private player;
+   public datos:any;
    private isConnected = false;
    private currentUser: Usuario;
    private data;
   constructor(private authenticationService: AuthenticationService) {     
     this.currentUser = authenticationService.currentUserValue;
   }
+
+  private messageSource = new BehaviorSubject([]);
+  currentMessage = this.messageSource.asObservable();
+
   
   conectar(){
     if(this.isConnected){
-      console.log('Already Connected')
+      console.log('Already Connected');
       return;      
     }else
     {
@@ -29,28 +34,31 @@ export class JugadorService {
     .withJwtToken(this.currentUser.token.token)
     .connect(); 
     }
-  }
 
 
-  subscribir(){
-    this.player = this.ws.subscribe('player');
-  }  
 
-
-  emitMessage(){
-    this.player.emit('message', {
+    const player = this.ws.subscribe('player');
+    player.emit('message', {
       body: 'hello',
       user: 'virk'
     });
-  }
 
+   
 
-  retrieveMessage() {
-    this.player.on('message',(info)=> {
-      this.data = info;
-      console.log(this.data);
+    player.on('message', (event) => {
+      console.log(event);
+      this.messageSource.next(event)
+      this.datos=event;
     })
+
   }
+
+  
+
+
+  
+ 
+  
 
 
   desconectar(){
@@ -64,19 +72,25 @@ export class JugadorService {
       
     }
   }
-
+ 
+  public get mensaje():any{return this.datos} 
 
 /**
- * Events to listen application state
+ * Events to listen applsication state
  */
 isOpenEvent(){  
   this.ws.on('open', () => {
     this.isConnected = true
   })   
 }
+
+
 isCloseEvent(){
   this.ws.on('close', () => {
     this.isConnected = false
   })
 }
+
+
+
 }
