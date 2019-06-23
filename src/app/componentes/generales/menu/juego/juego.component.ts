@@ -15,9 +15,14 @@ export class JuegoComponent implements OnInit {
 public datos:any
 public dato2s:any;
   ngOnInit() {  
-      this.playerService.conectar();
+    
+    this.playerService.conectar();
+    this.playerService.currentMessage.subscribe(isOpen => {
+      this.datos = JSON.stringify(isOpen);
+    });
+      
 
-      this.datos   =  JSON.stringify( this.playerService.mensaje); 
+       
     
   }
   
