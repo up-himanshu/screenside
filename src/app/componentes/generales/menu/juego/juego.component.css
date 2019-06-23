@@ -1,0 +1,35 @@
+body{
+    overflow-x: hidden;
+ }
+.prueba2-container
+{
+    width: 100%;
+    height: 100%;
+}
+
+.prueba2-mar-pocision
+{
+    position:absolute;
+    bottom: 0px;
+    left: 0px;
+    right:0px ;
+    min-width: 100%;
+    min-width: 100%;
+    z-index: 1;
+}
+
+.prueba2-boat-pocision
+{
+    min-width: 200px ;
+    
+    width:200px ;
+    min-height: 200px ;
+    max-height:  200px ;
+    height:200px ;
+    position: absolute;
+    overflow-x: hidden;
+    left: 0px;
+    bottom: 150px;
+    z-index:2 ;
+
+}
