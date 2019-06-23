@@ -13,9 +13,9 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(`${config.apiUrl}`);
 }
 getByID(id:number){ 
-  return this.http.get<Usuario>(`http://127.0.0.1:3333/get/${id}`);
+  return this.http.get<Usuario>(` http://192.168.1.64:3333/get/${id}`);
 }
 register(user){
-  return this.http.post('http://127.0.0.1:3333/register',user);
+  return this.http.post(' http://192.168.1.64:3333/register',user);
 }
 }

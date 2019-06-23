@@ -8,7 +8,7 @@ declare const adonis: any;
   providedIn: 'root'
 })
 export class JugadorService {  
-   private ws = adonis.Ws('ws://localhost:3333');
+   private ws = adonis.Ws('ws://192.168.1.64:3333');
   // private wsp = adonis.wsp.codes;
    private chat;
    public datos:any;

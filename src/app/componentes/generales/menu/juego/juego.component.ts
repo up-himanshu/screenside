@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Usuario } from 'src/app/interface/generales/usuario';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { JugadorService } from 'src/app/servicios/jugador.service';
@@ -11,7 +11,8 @@ import { promise } from 'protractor';
   templateUrl: './juego.component.html',
   styleUrls: ['./juego.component.css']
 })
-export class JuegoComponent implements OnInit {
+export class JuegoComponent implements OnInit, OnDestroy{
+  
   public cantidad =0;
   public cantidadPadingleft =0;
   player: Usuario[] = [];public NumeroPantalla;
@@ -28,9 +29,15 @@ public cargando=false;
     this.playerService.currentMessage.subscribe(isOpen  => {
 
       this.datos = isOpen ;
+      
       if(isOpen.length != 0 )
       {
           this.Pantalla();
+          this.cargando=true;
+      }
+      else
+      {
+
       }
       
 
@@ -85,8 +92,8 @@ public cargando=false;
   }
 
   
-  cerrar(){
-    alert(this.datos);
+ public cerrar(){
+    
     this.playerService.desconectar();
   }
 
@@ -145,4 +152,7 @@ public cargando=false;
   }
 
 
+  ngOnDestroy(): void {
+   this.cerrar();
+  }
 }

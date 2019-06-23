@@ -1,6 +1,6 @@
 
 
-<div > 
+<div *ngIf="cargando"> 
 
   <img id="boat"  src="assets/img/boat.png" class="prueba2-boat-pocision" alt="error">
 <img src="assets/img/mar.jpg" class="prueba2-mar-pocision" alt="Imagen fallida">
@@ -10,7 +10,9 @@
 
 
 </div>
-
+<div *ngIf="!cargando">
+ Juego en proceso
+</div>
 
 
 
