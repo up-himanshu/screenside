@@ -48,7 +48,8 @@ export class JugadorService {
     player.on('message', (event) => {
       
       this.messageSource.next(event)
-     alert(JSON.stringify(event));
+      console.log(event)
+     
     })
 
   }
