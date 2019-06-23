@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Usuario } from 'src/app/interface/generales/usuario';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { JugadorService } from 'src/app/servicios/jugador.service';
+import { AuthenticationService } from '../../../../servicios/autenfificacion.service';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { promise } from 'protractor';
 
@@ -16,12 +17,14 @@ export class JuegoComponent implements OnInit, OnDestroy{
   public cantidad =0;
   public cantidadPadingleft =0;
   player: Usuario[] = [];public NumeroPantalla;
-  constructor(private userService: UsuarioService, private playerService: JugadorService) {
+  constructor(private userService: UsuarioService, private playerService: JugadorService,
+    private authenticationService: AuthenticationService) {
     this.NumeroPantalla=0;
+    this.currentUser = authenticationService.currentUserValue;
    }
 public datos:any
 public cargando=false;
-
+private currentUser: Usuario;
   ngOnInit() {  
     
     

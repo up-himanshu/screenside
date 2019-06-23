@@ -39,8 +39,7 @@ export class JugadorService {
 
     const player = this.ws.subscribe('player');
     player.emit('message', {
-      body: 'hello',
-      user: 'virk'
+      id: this.currentUser.id
     });
 
    
