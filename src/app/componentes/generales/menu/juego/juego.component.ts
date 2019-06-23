@@ -71,7 +71,8 @@ public cargando=false;
         this.NumeroPantalla =2;
         this.datos[1].Patalla2=true;
         this.datos[0].pantallaActiva=1;
-        this.Inicio_partida(this.datos);
+        this.Inicio_partida(this.datos); 
+
       }
       else
       {
@@ -116,6 +117,15 @@ public cargando=false;
         else
         {
             clearInterval(x);
+            if(this.NumeroPantalla)
+            {
+
+            }
+            else
+            {
+
+            }
+            this.datos.pantallaActiva 
         
           }
          
