@@ -65,6 +65,14 @@ export class JugadorService {
       
       Tipo:"ACT"
     });
+
+    
+    this.player.on('message', (event) => {
+      console.log(event)
+      this.messageSource.next(JSON.parse(event))
+      
+     
+    })
     
   }
   
