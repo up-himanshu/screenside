@@ -22,7 +22,7 @@ export class JugadorService {
   private messageSource = new BehaviorSubject([]);
   currentMessage = this.messageSource.asObservable();
 
-  
+  private player;
   conectar(){
     if(this.isConnected){
       console.log('Already Connected');
@@ -37,18 +37,18 @@ export class JugadorService {
 
 
 
-    const player = this.ws.subscribe('player');
-    player.emit('message', {
+    this.player = this.ws.subscribe('player');
+    this.player.emit('message', {
       id: this.currentUser.id
     });
 
    
     
 
-    player.on('message', (event) => {
-      
-      this.messageSource.next(event)
+    this.player.on('message', (event) => {
       console.log(event)
+      this.messageSource.next(JSON.parse(event))
+      
      
     })
 
@@ -57,7 +57,9 @@ export class JugadorService {
   
 
 
-  
+  ActualizarDatos(event){
+    this.player.emit('data',event)
+  }
  
   
 

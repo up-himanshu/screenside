@@ -77,20 +77,24 @@ private currentUser: Usuario;
    
 
   
-      if( this.datos[1].Pantalla1==true && this.NumeroPantalla ==0)
+      if( this.datos.screenone==true && this.NumeroPantalla ==0)
       {
         this.NumeroPantalla =2;
-        this.datos[1].Patalla2=true;
-        this.datos[0].pantallaActiva=1;
-        this.Inicio_partida(this.datos); 
+        this.datos.screentwo=1;
+        // this.datos.display_active=1;
+        // this.Inicio_partida(this.datos); 
 
       }
       else
       {
         this.NumeroPantalla =1;
-        this.datos[1].Patalla1=true;
+        this.datos.screenone=true;
        
       }
+      
+      console.log(this.datos);
+      this.playerService.ActualizarDatos(this.datos);
+      
    
   }
 
