@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { Usuario } from 'src/app/interface/generales/usuario';
+import { ApiConfig } from '../interface/generales/config';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -20,7 +21,7 @@ export class AuthenticationService {
     }     
 
 login(correo: string, contrasena: string) {
-    return this.http.post<any>('http://192.168.1.64:3333/login', { correo, contrasena })
+    return this.http.post<any>(`${ApiConfig.apiUrl}/login`, { correo, contrasena })
         .pipe(map(user => {
             // login successful if there's a jwt token in the response
             if (user && user.token) {                
@@ -39,7 +40,7 @@ login(correo: string, contrasena: string) {
         this.currentUserSubject.next(null);
     }
     register(correo: string, contrasena: string, usuario: string){
-        return this.http.post<any>('http://192.168.1.64:3333/register',{correo,usuario,contrasena})
+        return this.http.post<any>(`${ApiConfig.apiUrl}/register`,{correo,usuario,contrasena})
         .pipe(map(user => {             
             return user;    
         }))
