@@ -18,7 +18,7 @@ export class JuegoComponent implements OnInit, OnDestroy{
   public cantidadPadingleft =0;
 
   player: Usuario[] = [];
-  public NumeroPantalla=0;
+  public NumeroPantalla;
   constructor(private userService: UsuarioService, private playerService: JugadorService,
     private authenticationService: AuthenticationService) {
     
@@ -29,7 +29,7 @@ public cargando=false;
 private currentUser: Usuario;
   ngOnInit() {  
     
-    
+    this.NumeroPantalla = 0;
     this.playerService.conectar();
     this.playerService.currentMessage.subscribe(isOpen  => {
 
@@ -78,7 +78,7 @@ private currentUser: Usuario;
    public Pantalla () {
    
 
-  
+  alert(this.NumeroPantalla);
       if( this.datos.screenone==true )
       {
      
