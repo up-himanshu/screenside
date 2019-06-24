@@ -37,9 +37,11 @@ private currentUser: Usuario;
       
       if(isOpen.length != 0 )
       {
+        if( this.NumeroPantalla==1 || this.NumeroPantalla==2 || this.NumeroPantalla==0 ){
           this.Pantalla();
           this.cargando=true;
-      }
+            }
+        }
       else
       {
 
@@ -78,7 +80,7 @@ private currentUser: Usuario;
    public Pantalla () {
    
 
-  alert(this.NumeroPantalla);
+  alert(this.NumeroPantalla );
       if( this.datos.screenone==true )
       {
      

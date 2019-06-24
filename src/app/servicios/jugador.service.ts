@@ -36,7 +36,7 @@ export class JugadorService {
     }
 
 
-
+    
     this.player = this.ws.subscribe('player');
     this.player.emit('message', {
       id: this.currentUser.id
