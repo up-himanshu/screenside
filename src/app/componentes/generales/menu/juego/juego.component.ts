@@ -16,7 +16,7 @@ export class JuegoComponent implements OnInit, OnDestroy{
   
   public cantidad =0;
   public cantidadPadingleft =0;
-
+  public barcoActivo = false;
   player: Usuario[] = [];
   public NumeroPantalla;
   constructor(private userService: UsuarioService, private playerService: JugadorService,
@@ -41,11 +41,18 @@ private currentUser: Usuario;
           this.Pantalla();
           this.cargando=true;
             }
+
+            this.Inicio_partida();
         }
       else
       {
 
       }
+
+      
+
+
+
       
 
     });
@@ -61,16 +68,17 @@ private currentUser: Usuario;
 
 
 
-  private Inicio_partida (datos_partida)
+  private Inicio_partida ()
   {
-    if (datos_partida[0].pantallaActiva==0)
+    if (this.datos.display_active==0)
     {
        alert("Esperando partida");
     }
     else
     {
-        if(this.NumeroPantalla != this.datos[0].pantallaActiva)
+        if(this.NumeroPantalla == this.datos.display_active)
         {
+          this.barcoActivo = true;
           this.Replay();
       
         }
@@ -80,7 +88,7 @@ private currentUser: Usuario;
    public Pantalla () {
    
 
-  alert(this.NumeroPantalla );
+  
       if( this.datos.screenone==true )
       {
      
@@ -89,8 +97,9 @@ private currentUser: Usuario;
         
         this.NumeroPantalla =2;
         this.datos.screentwo=true;
+         this.datos.display_active=1;
         this.playerService.ActualizarDatos(this.datos);
-        // this.datos.display_active=1;
+       
         // this.Inicio_partida(this.datos); 
         }
         else
