@@ -58,7 +58,8 @@ export class JugadorService {
 
 
   ActualizarDatos(event){
-    this.player.emit('data',event)
+    this.player.emit('data',event);
+    
   }
  
   

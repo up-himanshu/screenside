@@ -16,10 +16,12 @@ export class JuegoComponent implements OnInit, OnDestroy{
   
   public cantidad =0;
   public cantidadPadingleft =0;
-  player: Usuario[] = [];public NumeroPantalla;
+
+  player: Usuario[] = [];
+  public NumeroPantalla=0;
   constructor(private userService: UsuarioService, private playerService: JugadorService,
     private authenticationService: AuthenticationService) {
-    this.NumeroPantalla=0;
+    
     this.currentUser = authenticationService.currentUserValue;
    }
 public datos:any
@@ -47,7 +49,7 @@ private currentUser: Usuario;
     });
 
     
-      this.NumeroPantalla=0;
+      
     
       
     
@@ -77,23 +79,35 @@ private currentUser: Usuario;
    
 
   
-      if( this.datos.screenone==true && this.NumeroPantalla ==0)
+      if( this.datos.screenone==true )
       {
+     
+        if (this.NumeroPantalla==0)
+        {
+        
         this.NumeroPantalla =2;
-        this.datos.screentwo=1;
+        this.datos.screentwo=true;
+        this.playerService.ActualizarDatos(this.datos);
         // this.datos.display_active=1;
         // this.Inicio_partida(this.datos); 
+        }
+        else
+        {
+
+        }
 
       }
       else
       {
+        
         this.NumeroPantalla =1;
         this.datos.screenone=true;
+        this.playerService.ActualizarDatos(this.datos);
        
       }
       
-      console.log(this.datos);
-      this.playerService.ActualizarDatos(this.datos);
+     
+   
       
    
   }
