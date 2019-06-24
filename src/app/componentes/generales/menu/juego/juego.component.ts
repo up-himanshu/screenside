@@ -40,9 +40,10 @@ private currentUser: Usuario;
         if( this.NumeroPantalla==1 || this.NumeroPantalla==2 || this.NumeroPantalla==0 ){
           this.Pantalla();
           this.cargando=true;
+            this.Inicio_partida();
             }
 
-            this.Inicio_partida();
+          
         }
       else
       {
@@ -159,11 +160,11 @@ private currentUser: Usuario;
             clearInterval(x);
             if(this.NumeroPantalla==1)
             {
-              this.datos.pantallaActiva =2
+              this.datos.display_active =2
             }
             else
             {
-              this.datos.pantallaActiva =1
+              this.datos.display_active =1
             }
             this.playerService.ActualizarDatos(this.datos);
         
