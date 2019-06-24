@@ -157,15 +157,15 @@ private currentUser: Usuario;
         else
         {
             clearInterval(x);
-            if(this.NumeroPantalla)
+            if(this.NumeroPantalla==1)
             {
-
+              this.datos.pantallaActiva =2
             }
             else
             {
-
+              this.datos.pantallaActiva =1
             }
-            this.datos.pantallaActiva 
+            this.playerService.ActualizarDatos(this.datos);
         
           }
          
