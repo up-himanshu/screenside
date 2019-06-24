@@ -36,10 +36,12 @@ export class JugadorService {
     }
 
 
-    
+
     this.player = this.ws.subscribe('player');
     this.player.emit('message', {
-      id: this.currentUser.id
+      id: this.currentUser.id,
+      
+      Tipo:"ISN"
     });
 
    
@@ -58,9 +60,15 @@ export class JugadorService {
 
 
   ActualizarDatos(event){
-    this.player.emit('data',event);
+    this.player.emit('message', {
+      Params: event,
+      
+      Tipo:"ACT"
+    });
     
   }
+  
+  
  
   
 

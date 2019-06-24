@@ -180,7 +180,7 @@ private currentUser: Usuario;
           this.cantidad++;
       }
       
-    },10);
+    },1);
     
   }
 
