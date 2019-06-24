@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { AuthenticationService } from './autenfificacion.service';
 import { Usuario } from '../interface/generales/usuario';
 import { BehaviorSubject } from 'rxjs';
+import { ApiConfig } from '../interface/generales/config';
 declare const adonis: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class JugadorService {  
-   private ws = adonis.Ws('ws://192.168.1.64:3333');
+   private ws = adonis.Ws(`ws:${ApiConfig.webSocket}`);
   // private wsp = adonis.wsp.codes;
-   private chat;
+   private error;
    public datos:any;
    private isConnected = false;
    private currentUser: Usuario;
@@ -34,9 +35,8 @@ export class JugadorService {
     .withJwtToken(this.currentUser.token.token)
     .connect(); 
     }
-
-
-
+   this.bindCloseEvent();
+   this.bindOpenEvent();
     this.player = this.ws.subscribe('player');
     this.player.emit('message', {
       id: this.currentUser.id,
@@ -68,10 +68,8 @@ export class JugadorService {
 
     
     this.player.on('message', (event) => {
-      console.log(event)
-      this.messageSource.next(JSON.parse(event))
-      
-     
+      console.log(event);
+      this.messageSource.next(JSON.parse(event));
     })
     
   }
@@ -87,9 +85,8 @@ export class JugadorService {
     this.ws.close();
     }
     else {
-      console.log('Already Closed')
-      return;
-      
+      console.log('Already Closed');
+      return;      
     }
   }
  
@@ -98,19 +95,25 @@ export class JugadorService {
 /**
  * Events to listen applsication state
  */
-isOpenEvent(){  
+bindOpenEvent(){  
   this.ws.on('open', () => {
-    this.isConnected = true
+    this.isConnected = true;
   })   
 }
 
 
-isCloseEvent(){
+bindCloseEvent(){
   this.ws.on('close', () => {
-    this.isConnected = false
+    this.isConnected = false;
   })
 }
 
+bindTopicErrorEvent(){
+  this.player.on('error', (error) => {
+    this.error = error;
+    console.log(error);
+  })
+}
 
 
 }
