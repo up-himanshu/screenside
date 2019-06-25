@@ -127,6 +127,7 @@ private currentUser: Usuario;
      this.cantidadPadingleft =0;
      box.style.left='0px';
      box.style.paddingLeft='0px';
+     if(this.NumeroPantalla==this.datos.display_active){
      var x =setInterval(()=>{
   
   
@@ -171,7 +172,7 @@ private currentUser: Usuario;
       }
       
     },1);
-    
+  }
   }
 
 
