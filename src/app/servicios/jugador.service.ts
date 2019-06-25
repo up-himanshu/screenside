@@ -59,10 +59,11 @@ export class JugadorService {
 
   ActualizarDatos(event){
     this.player.emit('data', event);
+    setTimeout(()=>{
     this.player.emit('message', {
       id: this.currentUser.id,
     });
-    
+  },100);
   }
   
   

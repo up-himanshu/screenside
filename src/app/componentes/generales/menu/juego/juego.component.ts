@@ -118,6 +118,7 @@ private currentUser: Usuario;
     this.playerService.desconectar();
   }
 
+  p
   
   public Replay()
   {
@@ -127,8 +128,9 @@ private currentUser: Usuario;
      this.cantidadPadingleft =0;
      box.style.left='0px';
      box.style.paddingLeft='0px';
+     var interval;
      if(this.NumeroPantalla==this.datos.display_active){
-     var x =setInterval(()=>{
+     interval = setInterval(()=>{
   
   
       var box = document.getElementById('boat');
@@ -146,14 +148,16 @@ private currentUser: Usuario;
         }
         else
         {
-            clearInterval(x);
+            clearInterval(interval);
             if(this.NumeroPantalla==1)
             {
+              clearInterval(interval);
               this.datos.display_active =2
               this.playerService.ActualizarDatos(this.datos);
             }
             else
             {
+              clearInterval(interval);
               this.datos.display_active =1
               this.playerService.ActualizarDatos(this.datos);
             }
@@ -172,6 +176,10 @@ private currentUser: Usuario;
       }
       
     },1);
+  }
+  else
+  {
+    clearInterval(interval);
   }
   }
 
