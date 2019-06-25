@@ -171,8 +171,9 @@ private currentUser: Usuario;
             {
               clearInterval(interval);
               this.datos.display_active =1
+                this.datos.spin++;  
               this.playerService.ActualizarDatos(this.datos);
-              this.datos.spin++;  
+              
             }
            
         
