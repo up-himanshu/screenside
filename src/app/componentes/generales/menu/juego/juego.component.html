@@ -2,7 +2,7 @@
 
 <div *ngIf="cargando"> 
 
-  <img id="boat"  src="assets/img/boat.png" class="prueba2-boat-pocision" alt="error"  [ngClass]="{'prueba2-boat-index2': datos.display_active  ,'prueba2-boat-index': !(datos.display_active ) }"  >
+  <img id="boat"  src="assets/img/boat.png" class="prueba2-boat-pocision" alt="error"  [ngClass]="{'prueba2-boat-index2': datos.display_active == NumeroPantalla ,'prueba2-boat-index': !(datos.display_active== NumeroPantalla ) }"  >
 <img src="assets/img/mar.jpg" class="prueba2-mar-pocision" alt="Imagen fallida">
 
 
