@@ -49,20 +49,7 @@ private currentUser: Usuario;
       {
 
       }
-
-      
-
-
-
-      
-
     });
-
-    
-      
-    
-      
-    
   }
 
   
@@ -71,9 +58,11 @@ private currentUser: Usuario;
 
   private Inicio_partida ()
   {
+    if(this.datos.screenone && this.datos.screentwo)
+    {
     if (this.datos.display_active==0)
     {
-       alert("Esperando partida");
+       
     }
     else
     {
@@ -83,7 +72,8 @@ private currentUser: Usuario;
           this.Replay();
       
         }
-    }
+      }
+  }
   } 
   
    public Pantalla () {
@@ -99,8 +89,7 @@ private currentUser: Usuario;
         this.NumeroPantalla =2;
         this.datos.screentwo=true;
          this.datos.display_active=1;
-        this.playerService.ActualizarDatos(this.datos);
-       
+         this.playerService.ActualizarDatos(this.datos);
         // this.Inicio_partida(this.datos); 
         }
         else
@@ -119,7 +108,6 @@ private currentUser: Usuario;
       }
       
      
-   
       
    
   }
@@ -161,12 +149,14 @@ private currentUser: Usuario;
             if(this.NumeroPantalla==1)
             {
               this.datos.display_active =2
+              this.playerService.ActualizarDatos(this.datos);
             }
             else
             {
               this.datos.display_active =1
+              this.playerService.ActualizarDatos(this.datos);
             }
-            this.playerService.ActualizarDatos(this.datos);
+           
         
           }
          
