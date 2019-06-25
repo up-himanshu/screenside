@@ -20,6 +20,7 @@ export class JuegoComponent implements OnInit, OnDestroy{
   player: Usuario[] = [];
   public mostrarBar = false;
   public NumeroPantalla;
+  
   constructor(private userService: UsuarioService, private playerService: JugadorService,
     private authenticationService: AuthenticationService) {
     
@@ -37,7 +38,9 @@ private currentUser: Usuario;
     this.playerService.conectar();
     this.playerService.currentMessage.subscribe(isOpen  => {
 
-      this.datos = isOpen ;
+     this.datos = isOpen ;
+      if (this.datos.spin<=3){
+     
       
       if(isOpen.length != 0 )
       {
@@ -54,7 +57,9 @@ private currentUser: Usuario;
       {
 
       }
+    }
     });
+  
   }
 
   
@@ -167,6 +172,7 @@ private currentUser: Usuario;
               clearInterval(interval);
               this.datos.display_active =1
               this.playerService.ActualizarDatos(this.datos);
+              this.datos.spin++;  
             }
            
         
