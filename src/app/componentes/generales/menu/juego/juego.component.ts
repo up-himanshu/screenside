@@ -168,6 +168,7 @@ private currentUser: Usuario;
               this.playerService.ActualizarDatos(this.datos);
             }
             else
+            
             {
               clearInterval(interval);
               this.datos.display_active =1
