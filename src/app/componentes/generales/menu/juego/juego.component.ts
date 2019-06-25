@@ -18,13 +18,17 @@ export class JuegoComponent implements OnInit, OnDestroy{
   public cantidadPadingleft =0;
   public barcoActivo = false;
   player: Usuario[] = [];
+  public mostrarBar = false;
   public NumeroPantalla;
   constructor(private userService: UsuarioService, private playerService: JugadorService,
     private authenticationService: AuthenticationService) {
     
     this.currentUser = authenticationService.currentUserValue;
    }
-public datos:any
+public datos:any = 
+{
+  'display_active':-1
+}
 public cargando=false;
 private currentUser: Usuario;
   ngOnInit() {  
@@ -38,6 +42,7 @@ private currentUser: Usuario;
       if(isOpen.length != 0 )
       {
         if( this.NumeroPantalla==1 || this.NumeroPantalla==2 || this.NumeroPantalla==0 ){
+          this.mostrarBar = false;
           this.Pantalla();
           this.cargando=true;
             this.Inicio_partida();
@@ -130,6 +135,8 @@ private currentUser: Usuario;
      box.style.paddingLeft='0px';
      var interval;
      if(this.NumeroPantalla==this.datos.display_active){
+      this.mostrarBar = true;
+
      interval = setInterval(()=>{
   
   
