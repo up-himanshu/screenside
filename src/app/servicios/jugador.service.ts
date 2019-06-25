@@ -47,7 +47,10 @@ export class JugadorService {
 
     this.player.on('message', (event) => {
       console.log(event)
-      this.messageSource.next(JSON.parse(event))
+      if(this.currentUser.id == event.user_id){
+         this.messageSource.next(JSON.parse(event))
+      }
+     
       
      
     })
