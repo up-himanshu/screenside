@@ -64,11 +64,21 @@ export class JugadorService {
   {
     this.player.on('message', (event) => {
       console.log(event)
-      if(this.currentUser.id == JSON.parse(event).user_id){
+      
          this.messageSource.next(JSON.parse(event))
-      }
+
+      
     });
   };
+
+      
+     
+      
+  
+
+  
+
+
 
   ActualizarDatos(event){
     this.player.emit('data', event);
