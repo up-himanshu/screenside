@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
         this.userFromApi= user;
       });     
 
-      this.playerService.verPuntuaje();
+      this.playerService.verPuntuajeUsuario();
     this.playerService.getpuntuajeJuegoUsuario.subscribe(getPuntuaje  => 
       {
         this.puntuajeUsuario = getPuntuaje;
