@@ -62,6 +62,16 @@ export class JugadorService {
     });
   }
 
+  IniciarPartidas(event)
+  {
+    this.player.emit('startgame',
+    {
+      idusuario:this.currentUser.id,
+      id:event
+    } );
+    
+  }
+
   verPuntuaje()
   {
     this.player.emit('globalscores', null);

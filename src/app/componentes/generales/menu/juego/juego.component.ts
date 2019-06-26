@@ -199,7 +199,7 @@ private currentUser: Usuario;
 
 
   ngOnDestroy(): void {
-   this.cerrar();
+
   }
 
   public creacionPiedra (e)

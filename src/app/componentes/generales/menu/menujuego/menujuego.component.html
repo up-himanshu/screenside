@@ -37,7 +37,7 @@
           </div>
           <div class="col-12">
             <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action  "  [ngClass]="{'active': item.user_id_one !=0,'disabled': item.user_id_one !=0 && item.user_id_two !=0 }"   *ngFor="let item of partidas" (click)="iniciarJuego()">
+                <button type="button" class="list-group-item list-group-item-action  "  [ngClass]="{'active': item.user_id_one !=0,'disabled': item.user_id_one !=0 && item.user_id_two !=0 }"   *ngFor="let item of partidas" (click)="iniciarJuego(item.id)">
                   <div class="row">
                     <div class="col-6">
                         {{item.name}}
