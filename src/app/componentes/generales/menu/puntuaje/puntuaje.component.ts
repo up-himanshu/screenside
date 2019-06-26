@@ -23,13 +23,9 @@ export class PuntuajeComponent implements OnInit {
   ngOnInit() {
    
     this.playerService.verPuntuaje();
-    this.playerService.currentMessage.subscribe(getPuntuaje  => 
+    this.playerService.getpuntuajeJuego.subscribe(getPuntuaje  => 
       {
         this.puntuajeGlobal = getPuntuaje;
-        if(getPuntuaje.length > 0)
-        {
-          console.log(this.puntuajeGlobal);
-        }
 
       })
   }

@@ -26,6 +26,12 @@ export class JugadorService {
   private menuJuego = new BehaviorSubject([]);
   getmenuJuego = this.menuJuego.asObservable();
 
+  private puntuajeJuego = new BehaviorSubject([]);
+  getpuntuajeJuego = this.puntuajeJuego.asObservable();
+
+  private puntuajeJuegoUsuario = new BehaviorSubject([]);
+  getpuntuajeJuegoUsuario = this.puntuajeJuegoUsuario.asObservable();
+
   private player;
   conectar(){
     if(this.isConnected){
@@ -58,16 +64,27 @@ export class JugadorService {
 
   verPuntuaje()
   {
-    this.player.emit('globalscores', "Hola");
+    this.player.emit('globalscores', null);
     this.player.on('globalscores', (event) => {
       
       console.log(event);
       
-         this.messageSource.next(event);
+         this.puntuajeJuego.next(event);
       
     });
   }
 
+  verPuntuajeUsuario()
+  {
+    this.player.emit('', null);
+    this.player.on('', (event) => {
+      
+      console.log(event);
+      
+         this.puntuajeJuegoUsuario.next(event);
+      
+    });
+  }
   
 
   IniciarPartida()
