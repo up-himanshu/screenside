@@ -8,7 +8,7 @@ import { AuthenticationService } from 'src/app/servicios/autenfificacion.service
   templateUrl: './menujuego.component.html',
   styleUrls: ['./menujuego.component.css']
 })
-export class MenujuegoComponent implements OnInit, OnDestroy {
+export class MenujuegoComponent implements OnInit {
  
 
 
@@ -25,6 +25,11 @@ public partidas:any = [];
       this.usuarios = authenticationService.currentUserValue;
     }
 
+
+    public iniciarJuego()
+    {
+      alert("entra");
+    }
  
 
 
@@ -32,18 +37,16 @@ public partidas:any = [];
 
   //inicio de espacio de eventos
   ngOnInit() {
-    this.playerService.conectar();
+   
     this.playerService.verPartidas()
-    this.playerService.currentMessage.subscribe(getPartidas  => 
+    this.playerService.getmenuJuego.subscribe(getPartidas  => 
       {
         this.partidas = getPartidas;
       })
   }
 
 
-  ngOnDestroy(): void {
-  this.playerService.desconectar();
-  }
+ 
   //afin del espacio de eventos
 
 }

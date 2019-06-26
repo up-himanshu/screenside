@@ -21,7 +21,7 @@ export class PuntuajeComponent implements OnInit {
   
 
   ngOnInit() {
-    this.playerService.conectar();
+   
     this.playerService.verPuntuaje();
     this.playerService.currentMessage.subscribe(getPuntuaje  => 
       {
@@ -34,8 +34,6 @@ export class PuntuajeComponent implements OnInit {
       })
   }
 
-  ngOnDestroy(): void {
-    this.playerService.desconectar();
-    }
+  
 
 }

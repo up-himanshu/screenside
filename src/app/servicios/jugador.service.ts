@@ -23,6 +23,9 @@ export class JugadorService {
   private messageSource = new BehaviorSubject([]);
   currentMessage = this.messageSource.asObservable();
 
+  private menuJuego = new BehaviorSubject([]);
+  getmenuJuego = this.menuJuego.asObservable();
+
   private player;
   conectar(){
     if(this.isConnected){
@@ -48,14 +51,14 @@ export class JugadorService {
       
       console.log(event);
       
-         this.messageSource.next(event);
+         this.menuJuego.next(event);
       
     });
   }
 
   verPuntuaje()
   {
-    this.player.emit('globalscores', null);
+    this.player.emit('globalscores', "Hola");
     this.player.on('globalscores', (event) => {
       
       console.log(event);
@@ -117,6 +120,7 @@ export class JugadorService {
       console.log('Already Closed');
       return;      
     }
+    
   }
  
   public get mensaje():any{return this.datos} 

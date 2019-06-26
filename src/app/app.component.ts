@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/servicios/autenfificacion.service';
 import { Usuario } from 'src/app/interface/generales/usuario';
 import { Role } from './interface/generales/roles';
+import { JugadorService } from './servicios/jugador.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,16 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+     private playerService: JugadorService,
+    
 ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+}
+
+ngOnInit() {
+  this.playerService.conectar();
+  
 }
 
 get isAdmin() {

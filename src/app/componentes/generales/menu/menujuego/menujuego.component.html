@@ -37,7 +37,7 @@
           </div>
           <div class="col-12">
             <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action active" [ngClass]="{'active': item.user_id_one !=0 }" *ngFor="let item of partidas">
+                <button type="button" class="list-group-item list-group-item-action  "  [ngClass]="{'active': item.user_id_one !=0,'disabled': item.user_id_one !=0 && item.user_id_two !=0 }"   *ngFor="let item of partidas" (click)="iniciarJuego()">
                   <div class="row">
                     <div class="col-6">
                         {{item.name}}
@@ -53,11 +53,18 @@
                             check_box_outline_blank
                             </i>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3" *ngIf="item.user_id_two !=0">
+                        <i class="material-icons">
+                            check_box
+                         
+                            </i>
+                    </div>
+                    <div class="col-3" *ngIf="!(item.user_id_two !=0)">
                         <i class="material-icons">
                             check_box_outline_blank
                             </i>
                     </div>
+                   
                   </div>
                   
                   
