@@ -1,6 +1,3 @@
-body{
-    overflow-x: hidden;
- }
 .prueba2-container
 {
     width: 100%;
@@ -46,4 +43,23 @@ body{
 .prueba2-boat-index2
 {
     z-index: 4;
+}
+
+.body
+{ 
+    width: 100%; 
+    height: 100%; 
+    z-index: 3; position: absolute;
+
+}
+
+.estiloCielo
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: -200;
+    z-index: -1;
 }

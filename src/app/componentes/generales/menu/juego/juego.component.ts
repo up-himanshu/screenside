@@ -62,10 +62,6 @@ private currentUser: Usuario;
   
   }
 
-  
-
-
-
   private Inicio_partida ()
   {
     if(this.datos.screenone && this.datos.screentwo)
@@ -202,4 +198,39 @@ private currentUser: Usuario;
   ngOnDestroy(): void {
    this.cerrar();
   }
+
+  public creacionPiedra = function(e)
+  {
+    var x = e.clientX;
+    var posicion = 0;
+    var pie = document.createElement("IMG");
+    var ran = Math.floor((Math.random()*500000)+1);
+    pie.setAttribute("src","assets/img/piedra.png");
+    pie.setAttribute("style","z-index: 4; position: absolute; width: 50px; height: 50px; left: "+x+"px; top: "+posicion+"px");
+    pie.setAttribute("id",""+ ran);
+    document.getElementById("content").appendChild(pie);
+    //document.body.appendChild(pie);
+    
+    // var piedra = document.getElementById('piedra');
+  var obj = document.getElementById(String(""+ran.toString()));
+    var timer = setInterval(()=>
+    {
+      
+      pie = new Image();
+      
+        if(screen.height <= posicion)
+        {
+          clearInterval(timer);
+          console.log("Termino");
+          obj.remove();
+        }
+        else
+        {
+          obj.style.top=posicion+ "px";
+          console.log(screen.height+", Posicion: "+posicion);
+          posicion++;
+        }
+    },10);
+  }
+
 }
