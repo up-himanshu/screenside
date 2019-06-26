@@ -62,8 +62,10 @@ export class JugadorService {
     });
   }
 
+  public idPartida;
   IniciarPartidas(event)
   {
+    this.idPartida = event;
     this.player.emit('startgame',
     {
       idusuario:this.currentUser.id,
@@ -100,20 +102,17 @@ export class JugadorService {
   IniciarPartida()
   {
     this.player.emit('message', {
-      id: this.currentUser.id,
+      id: this.idPartida
     });
-  }
-
-  getDatosPartida()
-  {
-    this.player.on('message', (event) => {
+      this.player.on('message', (event) => {
       console.log(event)
       
          this.messageSource.next(JSON.parse(event))
 
       
     });
-  };
+  }
+
 
       
      

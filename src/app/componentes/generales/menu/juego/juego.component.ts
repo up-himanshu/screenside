@@ -36,16 +36,14 @@ private currentUser: Usuario;
   ngOnInit() {  
     
     this.NumeroPantalla = 0;
-    this.playerService.conectar();
     this.playerService.IniciarPartida();
-    this.playerService.getDatosPartida();
     this.playerService.currentMessage.subscribe(isOpen  => {
 
      this.datos = isOpen ;
-      if (this.datos.spin<=3){
+      if (isOpen.length != 0){
      
       
-      if(isOpen.length != 0 )
+      if( this.datos.spin<=3)
       {
         if( this.NumeroPantalla==1 || this.NumeroPantalla==2 || this.NumeroPantalla==0 ){
           this.mostrarBar = false;
@@ -67,7 +65,7 @@ private currentUser: Usuario;
 
   private Inicio_partida ()
   {
-    if(this.datos.screenone && this.datos.screentwo)
+    if(this.datos.user_id_one != 0 && this.datos.user_id_two != 0)
     {
     if (this.datos.display_active==0)
     {
@@ -89,32 +87,25 @@ private currentUser: Usuario;
    
 
   
-      if( this.datos.screenone==true )
-      {
      
-        if (this.NumeroPantalla==0)
-        {
-        
+      if(this.datos.user_id_one == this.currentUser.id && this.NumeroPantalla == 0)
+      {
+        this.NumeroPantalla =1;
+        this.playerService.ActualizarDatos(this.datos);
+      }  
+      else
+      {
         this.NumeroPantalla =2;
-        this.datos.screentwo=true;
          this.datos.display_active=1;
          this.playerService.ActualizarDatos(this.datos);
         // this.Inicio_partida(this.datos); 
-        }
-        else
-        {
-          
-        }
-
       }
-      else
-      {
         
-        this.NumeroPantalla =1;
-        this.datos.screenone=true;
-        this.playerService.ActualizarDatos(this.datos);
+      
+        
+        
        
-      }
+      
       
      
       
