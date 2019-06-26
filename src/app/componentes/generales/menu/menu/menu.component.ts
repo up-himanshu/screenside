@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
       });     
 
       this.playerService.verPuntuaje();
-    this.playerService.getpuntuajeJuego.subscribe(getPuntuaje  => 
+    this.playerService.getpuntuajeJuegoUsuario.subscribe(getPuntuaje  => 
       {
         this.puntuajeUsuario = getPuntuaje;
 

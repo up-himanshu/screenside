@@ -86,8 +86,8 @@ export class JugadorService {
 
   verPuntuajeUsuario()
   {
-    this.player.emit('', null);
-    this.player.on('', (event) => {
+    this.player.emit('score',{'id':this.currentUser.id});
+    this.player.on('score', (event) => {
       
       console.log(event);
       
