@@ -5,7 +5,7 @@ import { JugadorService } from 'src/app/servicios/jugador.service';
 import { AuthenticationService } from '../../../../servicios/autenfificacion.service';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { promise } from 'protractor';
-
+declare var $:any;
 
 @Component({
   selector: 'app-juego',
@@ -13,7 +13,8 @@ import { promise } from 'protractor';
   styleUrls: ['./juego.component.css']
 })
 export class JuegoComponent implements OnInit, OnDestroy{
-  
+  public puntuaje;
+  public maxPiedra = true;
   public cantidad =0;
   public cantidadPadingleft =0;
   public barcoActivo = false;
@@ -199,7 +200,9 @@ private currentUser: Usuario;
    this.cerrar();
   }
 
-  public creacionPiedra = function(e)
+  public creacionPiedra (e)
+  {
+    if(this.maxPiedra)
   {
     var x = e.clientX;
     var posicion = 0;
@@ -213,6 +216,7 @@ private currentUser: Usuario;
     
     // var piedra = document.getElementById('piedra');
   var obj = document.getElementById(String(""+ran.toString()));
+  
     var timer = setInterval(()=>
     {
       
@@ -220,17 +224,45 @@ private currentUser: Usuario;
       
         if(screen.height <= posicion)
         {
+          this.maxPiedra = true;
           clearInterval(timer);
-          console.log("Termino");
           obj.remove();
         }
         else
         {
+          this.maxPiedra = false;
           obj.style.top=posicion+ "px";
           console.log(screen.height+", Posicion: "+posicion);
           posicion++;
+          //var posiciones =[ [x, x+50], [posicion, posicion + 50] ];
+          this.checkCollisions(ran);
         }
-    },10);
+    },3);
   }
+  }
+  
+  public checkCollisions(id){
+    
+    var piedra = $("#"+id);
+    var barco = $("#boat");
+    var choque_a = { 
+      t:piedra.position().top,
+      l:piedra.position().left,
+      r:piedra.position().left + piedra.width(),
+      b:piedra.position().top + piedra.height()
+    };
+    var choque_b = { 
+      t:barco.position().top,
+      l:barco.position().left,
+      r:barco.position().left + barco.width(),
+      b:barco.position().top + barco.height()
+    };
+    if(choque_a.l <= choque_b.r && choque_a.r >= choque_b.l && choque_a.b >= choque_b.t && choque_a.t <= choque_b.b)
+    {
+      this.puntuaje++;
+      piedra.remove();
+    }
+  }
+
 
 }
