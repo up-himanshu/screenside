@@ -53,6 +53,20 @@ export class JugadorService {
     });
   }
 
+  verPuntuaje()
+  {
+    this.player.emit('globalscores', null);
+    this.player.on('globalscores', (event) => {
+      
+      console.log(event);
+      
+         this.messageSource.next(event);
+      
+    });
+  }
+
+  
+
   IniciarPartida()
   {
     this.player.emit('message', {
