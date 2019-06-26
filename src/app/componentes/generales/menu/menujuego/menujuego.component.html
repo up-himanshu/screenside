@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center"> <h2>Partidas Activas</h2> </div>
+    <div class="col-12 bg-dark">
+        <div class="row">
+          <br>
+          <div class="col-12 text-white">
+              <h4>Informacion de partidas</h4>
+          </div>
+          <div class="col-12">
+            <div class="row text-white">
+              <div class="col-6" >
+                <div class="row"> 
+                  <div class="col-1">
+                     <i class="material-icons text-info">
+                      label
+                      </i>
+                  </div> 
+                  <div class="col-11">
+                      <strong>a punto de comenzar</strong> 
+                  </div> 
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-1">
+                      <i class="material-icons">
+                       label
+                       </i>
+                   </div> 
+                   <div class="col-11">
+                       <strong>Esperando jugadores</strong> 
+                   </div> 
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" [ngClass]="{'active': item.user_id_one !=0 }" *ngFor="let item of partidas">
+                  <div class="row">
+                    <div class="col-6">
+                        {{item.name}}
+                    </div>
+                    <div class="col-3" *ngIf="item.user_id_one !=0">
+                        <i class="material-icons">
+                            check_box
+                         
+                            </i>
+                    </div>
+                    <div class="col-3" *ngIf="!(item.user_id_one !=0)">
+                        <i class="material-icons">
+                            check_box_outline_blank
+                            </i>
+                    </div>
+                    <div class="col-3">
+                        <i class="material-icons">
+                            check_box_outline_blank
+                            </i>
+                    </div>
+                  </div>
+                  
+                  
+                      
+                </button>
+              </div>
+          </div>
+        </div>
+          <br>
+    </div>
+  </div>
+</div>

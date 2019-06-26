@@ -8,6 +8,7 @@ import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaj
 import { AutentificacionGuard } from './guardianes/credenciales/autentificacion.guard';
 import { MenuComponent } from './componentes/generales/menu/menu/menu.component';
 import { Role } from './interface/generales/roles';
+import { MenujuegoComponent } from './componentes/generales/menu/menujuego/menujuego.component';
 
 const appRoutes: Routes = [
   {
@@ -20,6 +21,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'puntuaje', component: PuntuajeComponent,
+    canActivate: [AutentificacionGuard],
+    data: { roles: [Role.user]}
+  },
+  {
+    path: 'menujugar', component: MenujuegoComponent,
     canActivate: [AutentificacionGuard],
     data: { roles: [Role.user]}
   },

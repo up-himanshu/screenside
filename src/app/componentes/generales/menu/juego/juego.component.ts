@@ -36,6 +36,8 @@ private currentUser: Usuario;
     
     this.NumeroPantalla = 0;
     this.playerService.conectar();
+    this.playerService.IniciarPartida();
+    this.playerService.getDatosPartida();
     this.playerService.currentMessage.subscribe(isOpen  => {
 
      this.datos = isOpen ;

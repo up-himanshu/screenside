@@ -6,33 +6,46 @@
 				</button>
 			  </div>
 	<!--<div *ngIf="success" class="alert alert-success">{{success}}</div>-->
+	<br>
+	<br>
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
 				<h3>INICIO DE SESION</h3>
 			</div>
-			<div class="card-body">
+			<div class="card-body text-white">
 				<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+						<label for="correo">Ingresa tu correo</label>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
+							<span class="input-group-text">
+									<i class="material-icons">
+											account_circle
+											</i>
+							</span>
 						</div>
-            <input type="text" class="form-control" placeholder="correo" formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
+						
+            <input type="text" class="form-control" name="correo" placeholder="correo" formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
             <div *ngIf="submitted && f['usuario'].errors" class="invalid-feedback">
               <div *ngIf="f['usuario'].errors.required">Correo requerido</div>
           </div>
 					</div>
+					<label for="Contra">Ingresa tu correo</label>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text">
+									<i class="material-icons">
+											lock
+											</i>
+							</span>
 						</div>
-            <input type="password" class="form-control" placeholder="contraseña" formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }">
+            <input type="password" name="Contra" class="form-control" placeholder="contraseña" formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }">
             <div *ngIf="submitted && f['contrasena'].errors" class="invalid-feedback">
               <div *ngIf="f['contrasena'].errors.required">Contraseña Requerida</div>
           </div>
 					</div>
 					<div class="form-group">
-						<input type="submit" [disabled]="loading" value="Login" class="btn float-right login_btn">
+						<input type="submit" [disabled]="loading" value="Iniciar" class="btn float-right login_btn">
 						<img *ngIf="loading" src="assets/loading.gif" height="75" width="75">
 					</div>
 					<br>
