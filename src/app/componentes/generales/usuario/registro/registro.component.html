@@ -1,4 +1,7 @@
 <div class="container" >
+	<br>
+	<br>
+
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
@@ -9,7 +12,10 @@
 					<!--Campo Usuario-->
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
+							<span class="input-group-text">
+								<i class="material-icons">
+										supervised_user_circle
+							</i></span>
 						</div>
 						
             <input type="text" class="form-control" placeholder="usuario" formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
@@ -20,7 +26,11 @@
 					<!--Campo Correo-->
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text">
+									<i class="material-icons">
+											alternate_email
+											</i>
+							</span>
 						</div>
 						
             <input type="text" class="form-control" placeholder="correo" formControlName="correo" [ngClass]="{ 'is-invalid': submitted && f.correo.errors }">
@@ -32,7 +42,11 @@
 			<!--Campo Contraseña-->
 			<div class="input-group form-group">
 					<div class="input-group-prepend">
-						<span class="input-group-text"><i class="fas fa-user"></i></span>
+						<span class="input-group-text">
+								<i class="material-icons">
+										lock
+										</i>
+						</span>
 					</div>
 					
 		<input type="password" class="form-control" placeholder="contraseña" formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }">
@@ -46,7 +60,7 @@
 					</div>
 					<br>
 					<br>
-					<div  *ngIf="error"class="alert alert-success alert-dismissible fade show" role="alert">
+					<div  *ngIf="error"class="alert alert-danger alert-dismissible fade show" role="alert">
 							{{error}}
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							  <span aria-hidden="true">&times;</span>

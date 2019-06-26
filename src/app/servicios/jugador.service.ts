@@ -38,26 +38,46 @@ export class JugadorService {
    this.bindCloseEvent();
    this.bindOpenEvent();
     this.player = this.ws.subscribe('player');
-    this.player.emit('message', {
-      id: this.currentUser.id,
-    });
-
-   
-    
-
-    this.player.on('message', (event) => {
-      console.log(event)
-      if(this.currentUser.id == JSON.parse(event).user_id){
-         this.messageSource.next(JSON.parse(event))
-      }
-     
-      
-     
-    })
 
   }
 
+  verPartidas()
+  {
+    this.player.emit('games', null);
+    this.player.on('games', (event) => {
+      
+      console.log(event);
+      
+         this.messageSource.next(event);
+      
+    });
+  }
+
+  IniciarPartida()
+  {
+    this.player.emit('message', {
+      id: this.currentUser.id,
+    });
+  }
+
+  getDatosPartida()
+  {
+    this.player.on('message', (event) => {
+      console.log(event)
+      
+         this.messageSource.next(JSON.parse(event))
+
+      
+    });
+  };
+
+      
+     
+      
   
+
+  
+
 
 
   ActualizarDatos(event){

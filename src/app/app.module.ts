@@ -14,7 +14,7 @@ import { PuntuajeComponent } from './componentes/generales/menu/puntuaje/puntuaj
 import { JwtinterceptorService } from './servicios/jwtinterceptor.service';
 import { ErrorinterceptorService } from './servicios/errorinterceptor.service';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { AdministradorComponent } from './componentes/generales/administrador/administrador.component';
+import { MenujuegoComponent } from './componentes/generales/menu/menujuego/menujuego.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { AdministradorComponent } from './componentes/generales/administrador/ad
     MenuComponent,
     JuegoComponent,
     PuntuajeComponent,
-    AdministradorComponent
+    MenujuegoComponent
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,7 @@ import { JugadorService } from 'src/app/servicios/jugador.service';
 import { AuthenticationService } from '../../../../servicios/autenfificacion.service';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { promise } from 'protractor';
-
+declare var $:any;
 
 @Component({
   selector: 'app-juego',
@@ -13,7 +13,8 @@ import { promise } from 'protractor';
   styleUrls: ['./juego.component.css']
 })
 export class JuegoComponent implements OnInit, OnDestroy{
-  
+  public puntuaje;
+  public maxPiedra = true;
   public cantidad =0;
   public cantidadPadingleft =0;
   public barcoActivo = false;
@@ -36,6 +37,8 @@ private currentUser: Usuario;
     
     this.NumeroPantalla = 0;
     this.playerService.conectar();
+    this.playerService.IniciarPartida();
+    this.playerService.getDatosPartida();
     this.playerService.currentMessage.subscribe(isOpen  => {
 
      this.datos = isOpen ;
@@ -61,10 +64,6 @@ private currentUser: Usuario;
     });
   
   }
-
-  
-
-
 
   private Inicio_partida ()
   {
@@ -168,11 +167,13 @@ private currentUser: Usuario;
               this.playerService.ActualizarDatos(this.datos);
             }
             else
+            
             {
               clearInterval(interval);
               this.datos.display_active =1
+                this.datos.spin++;  
               this.playerService.ActualizarDatos(this.datos);
-              this.datos.spin++;  
+              
             }
            
         
@@ -200,4 +201,70 @@ private currentUser: Usuario;
   ngOnDestroy(): void {
    this.cerrar();
   }
+
+  public creacionPiedra (e)
+  {
+    if(this.maxPiedra)
+  {
+    var x = e.clientX;
+    var posicion = 0;
+    var pie = document.createElement("IMG");
+    var ran = Math.floor((Math.random()*500000)+1);
+    pie.setAttribute("src","assets/img/piedra.png");
+    pie.setAttribute("style","z-index: 4; position: absolute; width: 50px; height: 50px; left: "+x+"px; top: "+posicion+"px");
+    pie.setAttribute("id",""+ ran);
+    document.getElementById("content").appendChild(pie);
+    //document.body.appendChild(pie);
+    
+    // var piedra = document.getElementById('piedra');
+  var obj = document.getElementById(String(""+ran.toString()));
+  
+    var timer = setInterval(()=>
+    {
+      
+      pie = new Image();
+      
+        if(screen.height <= posicion)
+        {
+          this.maxPiedra = true;
+          clearInterval(timer);
+          obj.remove();
+        }
+        else
+        {
+          this.maxPiedra = false;
+          obj.style.top=posicion+ "px";
+          console.log(screen.height+", Posicion: "+posicion);
+          posicion++;
+          //var posiciones =[ [x, x+50], [posicion, posicion + 50] ];
+          this.checkCollisions(ran);
+        }
+    },3);
+  }
+  }
+  
+  public checkCollisions(id){
+    
+    var piedra = $("#"+id);
+    var barco = $("#boat");
+    var choque_a = { 
+      t:piedra.position().top,
+      l:piedra.position().left,
+      r:piedra.position().left + piedra.width(),
+      b:piedra.position().top + piedra.height()
+    };
+    var choque_b = { 
+      t:barco.position().top,
+      l:barco.position().left,
+      r:barco.position().left + barco.width(),
+      b:barco.position().top + barco.height()
+    };
+    if(choque_a.l <= choque_b.r && choque_a.r >= choque_b.l && choque_a.b >= choque_b.t && choque_a.t <= choque_b.b)
+    {
+      this.puntuaje++;
+      piedra.remove();
+    }
+  }
+
+
 }
