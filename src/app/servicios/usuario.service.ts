@@ -20,4 +20,7 @@ getByID(id:number){
 register(user){
   return this.http.post(`${ApiConfig.apiUrl}/register`,user);
 }
+getScores(id:number){
+  return this.http.get<any>(`${ApiConfig.apiUrl}/score/${id}`);
+}
 }
