@@ -41,14 +41,14 @@
             <th scope="col">Opciones</th>
           </tr>
         </thead>
-        <tbody *ngFor="let game of games">
+        <tbody *ngFor="let game of games | async">
           <tr>            
             <td>{{game.name}}</td>
             <td>{{game.user_id_one}}</td>
             <td>{{game.user_id_two}}</td>
             <td>              
               <button type="button" class="btn btn-danger" (click)="deleteGame(game)">Eliminar</button>
-              <button type="button" class="btn btn-warning">Resetear</button>
+              <!--<button type="button" class="btn btn-warning">Resetear</button>-->
             </td>
           </tr>          
         </tbody>

@@ -15,7 +15,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AdministradorComponent implements OnInit {
   amount:number;
   singleForm: FormGroup;
-  games = [];
+  games;
   errors = '';
   submitted = false;
   private currentUser: Usuario;
@@ -25,43 +25,50 @@ export class AdministradorComponent implements OnInit {
     private formBuilder: FormBuilder    
     ) {    
      this.currentUser = this.authService.currentUserValue; 
-     this.amount = 1;
+     this.games = this.adminService.currentGameValue;
    }
 
   ngOnInit() {
+    
     this.singleForm = this.formBuilder.group({
       name: ['',Validators.required]
     });
     if(this.currentUser)
     {     
+      //this.adminService.sgetGame();      
+      this.games = this.adminService.getGames()  
       
       /*
-      this.adminService.getGames()  
       this.adminService.currentGame.subscribe(
         getgames => {
           this.games = getgames;
         }
       )*/
-      
+      /*
       this.adminService.sgetGame();      
-      this.adminService.currentGame.subscribe(
+     this.adminService.currentGame.subscribe(
         getgames => {
           this.games = getgames;
         })
+        console.log(this.adminService.currentGameValue)*/
     }
   }
-  destroyIt(){
-    this.adminService.currentGame._subscribe
-  }
+ 
+
   get f() {return this.singleForm.controls;}
+  
   createGame()
   {
+    console.log(this.games)
     this.submitted = true;
     this.errors = null
     if(this.singleForm.invalid){
       return;
     }
+    //this.adminService.createGame(this.f.name.value)
     this.adminService.screateGame(this.f.name.value);
+    this.games = this.adminService.getGames()  
+    //this.adminService.sgetGame();
     /*
     this.adminService.createGame(this.f.name.value)
     .pipe(first())
@@ -78,16 +85,10 @@ export class AdministradorComponent implements OnInit {
     //this.submitted = false;
   }
 
-  deleteGame(game){
-    this.adminService.sdeleteGame(game.id)
-    for (let index = 0; index < this.games.length; index++) {
-      this.games[index]
-      if(index == game.id)
-      {
-        this.games.splice(index, 1);
-      }
-      
-    }    
+  deleteGame(game){    
+    this.adminService.sdeleteGame(game.id) 
+    this.games = this.adminService.getGames()  
+    //this.adminService.sgetGame();       
     /*this.adminService.deleteGame(game.id)
     .pipe(first())
     .subscribe(
