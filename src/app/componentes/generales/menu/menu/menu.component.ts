@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/interface/generales/usuario';
 import { AuthenticationService } from 'src/app/servicios/autenfificacion.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { first } from 'rxjs/operators';
+import { JugadorService } from 'src/app/servicios/jugador.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,9 @@ import { first } from 'rxjs/operators';
 export class MenuComponent implements OnInit {
   currentUser: Usuario;
   userFromApi: Usuario;
+  public puntuajeUsuario:any = [];
   constructor(
+    private playerService: JugadorService,
     private authService: AuthenticationService,
     private userService: UsuarioService
   ) {
@@ -24,6 +27,15 @@ export class MenuComponent implements OnInit {
       user => {
         this.userFromApi= user;
       });     
+
+      this.playerService.verPuntuajeUsuario();
+    this.playerService.getpuntuajeJuegoUsuario.subscribe(getPuntuaje  => 
+      {
+        this.puntuajeUsuario = getPuntuaje;
+
+      })
   }
+
+  
 
 }

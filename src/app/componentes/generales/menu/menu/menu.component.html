@@ -17,9 +17,24 @@
       </div>
   <footer class="footer footer-default">
     <div class="container">      
-      <div class="copyright" id="copyright">
-          <p>Hecho por RUTT y Compañía</p>
-      </div>
+        <div class="copyright" id="copyright">
+            <p>Hecho por RUTT y Compañía</p>
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Puntuaje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of puntuajeUsuario">
+                <td scope="row">{{currentUser.usuario}}</td>
+                <td scope="row">{{item.score}}</td>
+                
+              </tr>
+            </tbody>
+          </table>
     </div>
   </footer>
 </div>

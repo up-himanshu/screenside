@@ -23,6 +23,15 @@ export class JugadorService {
   private messageSource = new BehaviorSubject([]);
   currentMessage = this.messageSource.asObservable();
 
+  private menuJuego = new BehaviorSubject([]);
+  getmenuJuego = this.menuJuego.asObservable();
+
+  private puntuajeJuego = new BehaviorSubject([]);
+  getpuntuajeJuego = this.puntuajeJuego.asObservable();
+
+  private puntuajeJuegoUsuario = new BehaviorSubject([]);
+  getpuntuajeJuegoUsuario = this.puntuajeJuegoUsuario.asObservable();
+
   private player;
   conectar(){
     if(this.isConnected){
@@ -46,30 +55,68 @@ export class JugadorService {
     this.player.emit('games', null);
     this.player.on('games', (event) => {
       
-      console.log(event);
-      
-         this.messageSource.next(event);
+         this.menuJuego.next(event);
       
     });
   }
+
+  public idPartida;
+  IniciarPartidas(event)
+  {
+    this.idPartida = event;
+    this.player.emit('startgame',
+    {
+      idusuario:this.currentUser.id,
+      id:event
+    } );
+   
+  }
+
+  verPuntuaje()
+  {
+    this.player.emit('globalscores', null);
+    this.player.on('globalscores', (event) => {
+      
+      console.log(event);
+      
+         this.puntuajeJuego.next(event);
+      
+    });
+  }
+
+  verPuntuajeUsuario()
+  {
+    this.player.emit('score',{'id':this.currentUser.id});
+    this.player.on('score', (event) => {
+      
+      console.log(event);
+      
+         this.puntuajeJuegoUsuario.next(event);
+      
+    });
+  }
+  
 
   IniciarPartida()
   {
     this.player.emit('message', {
-      id: this.currentUser.id,
+      id: this.idPartida
+    });
+
+
+      this.player.on('message', (event) => {
+      
+      if(this.idPartida == event.id)
+      {
+        console.log(event);
+        this.messageSource.next(event);
+      }
+         
+
+      
     });
   }
 
-  getDatosPartida()
-  {
-    this.player.on('message', (event) => {
-      console.log(event)
-      
-         this.messageSource.next(JSON.parse(event))
-
-      
-    });
-  };
 
       
      
@@ -81,10 +128,13 @@ export class JugadorService {
 
 
   ActualizarDatos(event){
+   
     this.player.emit('data', event);
+    
     setTimeout(()=>{
+  
     this.player.emit('message', {
-      id: this.currentUser.id,
+      id: this.idPartida,
     });
   },100);
   }
@@ -103,6 +153,7 @@ export class JugadorService {
       console.log('Already Closed');
       return;      
     }
+    
   }
  
   public get mensaje():any{return this.datos} 
