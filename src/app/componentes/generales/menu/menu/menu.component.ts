@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/servicios/autenfificacion.service
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { first } from 'rxjs/operators';
 import { JugadorService } from 'src/app/servicios/jugador.service';
+import { Role } from 'src/app/interface/generales/roles';
 
 @Component({
   selector: 'app-menu',
@@ -23,17 +24,20 @@ export class MenuComponent implements OnInit {
    }
 
   ngOnInit() {
+    if(this.currentUser.rol == Role.user){
     this.userService.getByID(this.currentUser.id).pipe(first()).subscribe(
       user => {
         this.userFromApi= user;
       });     
-
+    }
+      if(this.currentUser){
       this.playerService.verPuntuajeUsuario();
     this.playerService.getpuntuajeJuegoUsuario.subscribe(getPuntuaje  => 
       {
         this.puntuajeUsuario = getPuntuaje;
 
       })
+    }
   }
 
   

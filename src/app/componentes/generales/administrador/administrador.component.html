@@ -1,37 +1,28 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="row justify-content-center">
-          <button type="button" class="btn btn-info">Crear Partida</button>
+          <button type="button" class="btn btn-info">Crear Partida</button>          
         </div>
     </div>
 <div class="row justify-content-md-center">
     <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Nombre Juego</th>
+            <th scope="col">Jugador 1</th>
+            <th scope="col">Jugador 2</th>
+            <th scope="col">Opciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+        <tbody *ngFor="let game of games">
+          <tr>            
+            <td>{{game.name}}</td>
+            <td>{{game.user_id_one}}</td>
+            <td>{{game.user_id_two}}</td>
+            <td>              
+              <button type="button" class="btn btn-danger">Eliminar</button>
+            </td>
+          </tr>          
         </tbody>
       </table>
 </div>

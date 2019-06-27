@@ -3,6 +3,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { JugadorService } from 'src/app/servicios/jugador.service';
 import { AuthenticationService } from 'src/app/servicios/autenfificacion.service';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/interface/generales/usuario';
 
 @Component({
   selector: 'app-menujuego',
@@ -14,7 +15,7 @@ export class MenujuegoComponent implements OnInit {
 
 
 //Espacio de variables
-public usuarios:any;
+public currentUser:Usuario;
 public partidas:any = [];
  
 
@@ -24,7 +25,7 @@ public partidas:any = [];
   constructor(private userService: UsuarioService, private playerService: JugadorService,
     private authenticationService: AuthenticationService,private router:Router) 
     { 
-      this.usuarios = authenticationService.currentUserValue;
+      this.currentUser = authenticationService.currentUserValue;
     }
 
 
@@ -43,12 +44,13 @@ public partidas:any = [];
 
   //inicio de espacio de eventos
   ngOnInit() {
-   
+   if(this.currentUser){
     this.playerService.verPartidas()
     this.playerService.getmenuJuego.subscribe(getPartidas  => 
       {
         this.partidas = getPartidas;
       })
+    }
   }
 
 

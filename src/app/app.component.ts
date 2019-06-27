@@ -25,8 +25,9 @@ export class AppComponent {
 }
 
 ngOnInit() {
-  this.playerService.conectar();
-  
+  if(this.currentUser){
+    this.playerService.conectar();
+  }
 }
 
 get isAdmin() {
