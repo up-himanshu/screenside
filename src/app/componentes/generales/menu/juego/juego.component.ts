@@ -70,6 +70,7 @@ private currentUser: Usuario;
         this.playerService.enviarPuntuaje(this.puntuaje);
         alert("Juego Finalizado");
         this.router.navigate(['menujugar']);
+        location.reload(); 
       }
     }
     });
@@ -182,7 +183,7 @@ private currentUser: Usuario;
           this.cantidad++;
       }
 
-    },15);
+    },1);
   }
   else
   {
