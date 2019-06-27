@@ -19,7 +19,7 @@
 .prueba2-boat-pocision
 {
     min-width: 200px ;
-    
+
     width:200px ;
     min-height: 200px ;
     max-height:  200px ;
@@ -48,11 +48,12 @@
 }
 
 .body
-{ 
-    width: 100%; 
-    height: 100%; 
+{
+    width: 100%;
+    height: 100%;
     z-index: 3; position: absolute;
-    
+    overflow-x:hidden;
+    overflow-y:hidden
 
 }
 

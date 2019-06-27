@@ -8,7 +8,7 @@ declare const adonis: any;
 @Injectable({
   providedIn: 'root'
 })
-export class JugadorService {  
+export class JugadorService {
    private ws = adonis.Ws(`ws:${ApiConfig.webSocket}`);
   // private wsp = adonis.wsp.codes;
    private error;
@@ -16,7 +16,7 @@ export class JugadorService {
    private isConnected = false;
    private currentUser: Usuario;
    private data;
-  constructor(private authenticationService: AuthenticationService) {     
+  constructor(private authenticationService: AuthenticationService) {
     this.currentUser = authenticationService.currentUserValue;
   }
 
@@ -39,13 +39,13 @@ export class JugadorService {
   conectar(){
     if(this.isConnected){
       console.log('Already Connected');
-      return;      
+      return;
     }else
     {
       this.isConnected = true;
     this.ws
     .withJwtToken(this.currentUser.token.token)
-    .connect(); 
+    .connect();
     }
    this.bindCloseEvent();
    this.bindOpenEvent();
@@ -57,9 +57,9 @@ export class JugadorService {
   {
     this.player.emit('games', null);
     this.player.on('games', (event) => {
-      
+
          this.menuJuego.next(event);
-      
+
     });
   }
 
@@ -72,18 +72,18 @@ export class JugadorService {
       idusuario:this.currentUser.id,
       id:event
     } );
-   
+
   }
 
   verPuntuaje()
   {
     this.player.emit('globalscores', null);
     this.player.on('globalscores', (event) => {
-      
+
       console.log(event);
-      
+
          this.puntuajeJuego.next(event);
-      
+
     });
   }
 
@@ -91,20 +91,21 @@ export class JugadorService {
   {
     this.player.emit('score',{'id':this.currentUser.id});
     this.player.on('score', (event) => {
-      
+
       console.log(event);
-      
+
          this.puntuajeJuegoUsuario.next(event);
-      
+
     });
   }
   enviarPuntuaje(puntos)
   {
     this.player.emit('savescore', {
+      id: this.currentUser.id,
       puntuaje: puntos
     })
   }
-  
+
 
   IniciarPartida()
   {
@@ -114,43 +115,43 @@ export class JugadorService {
 
 
       this.player.on('message', (event) => {
-      
+
       if(this.idPartida == event.id)
       {
         console.log(event);
         this.messageSource.next(event);
       }
-         
 
-      
+
+
     });
   }
 
 
-      
-     
-      
-  
 
-  
+
+
+
+
+
 
 
 
   ActualizarDatos(event){
-   
+
     this.player.emit('data', event);
-    
+
     setTimeout(()=>{
-  
+
     this.player.emit('message', {
       id: this.idPartida,
     });
   },100);
   }
-  
-  
- 
-  
+
+
+
+
 
 
   desconectar(){
@@ -160,20 +161,20 @@ export class JugadorService {
     }
     else {
       console.log('Already Closed');
-      return;      
+      return;
     }
-    
+
   }
- 
-  public get mensaje():any{return this.datos} 
+
+  public get mensaje():any{return this.datos}
 
 /**
  * Events to listen applsication state
  */
-bindOpenEvent(){  
+bindOpenEvent(){
   this.ws.on('open', () => {
     this.isConnected = true;
-  })   
+  })
 }
 
 

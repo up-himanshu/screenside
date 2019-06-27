@@ -3,7 +3,7 @@ import { Usuario } from 'src/app/interface/generales/usuario';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { JugadorService } from 'src/app/servicios/jugador.service';
 import { AuthenticationService } from '../../../../servicios/autenfificacion.service';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
 declare var $:any;
 
@@ -23,28 +23,30 @@ export class JuegoComponent implements OnInit, OnDestroy{
   public NumeroPantalla=0;
   public buel =0;
   public vuelta =null;
+
+
   constructor(private userService: UsuarioService, private playerService: JugadorService,
-    private authenticationService: AuthenticationService) {
-    
+    private authenticationService: AuthenticationService, private router: Router) {
+
     this.currentUser = authenticationService.currentUserValue;
    }
-public datos:any = 
+public datos:any =
 {
   'display_active':-1
 }
 public cargando=false;
 private currentUser: Usuario;
-  ngOnInit() {  
-    
-   
+  ngOnInit() {
+
+
     this.playerService.IniciarPartida();
     this.playerService.currentMessage.subscribe(isOpen  => {
 
      this.datos = isOpen ;
-     
+
       if (isOpen.length != 0){
-     
-    
+
+
       if( this.datos.spin<=3)
       {
         if( this.NumeroPantalla==0 || this.NumeroPantalla==2 || this.NumeroPantalla==1 )
@@ -52,71 +54,73 @@ private currentUser: Usuario;
           this.mostrarBar = false;
             this.Pantalla();
           this.cargando=true;
-         
+
            if(this.vuelta != this.datos.spin)
            {
                          this.Inicio_partida();
            }
-          
+
             }
 
-          
+
         }
       else
       {
         console.log(this.datos);
         this.playerService.enviarPuntuaje(this.puntuaje);
+        alert("Juego Finalizado");
+        this.router.navigate(['menujugar']);
       }
     }
     });
-  
+
   }
- 
+
   private Inicio_partida ()
   {
-    
-   
-     
+
+
+
         if(this.NumeroPantalla == this.datos.display_active)
-        {  
+        {
           this.barcoActivo = true;
           this.Replay();
-      
+
         }
-      
+
   }
-  
-  
+
+
    public Pantalla () {
-   
 
 
-    
+
+
       if(this.datos.user_id_one == this.currentUser.id  && this.NumeroPantalla ==0)
       {
-      
+
         this.NumeroPantalla =1;
         this.playerService.ActualizarDatos(this.datos);
-      }  
-      
+      }
+
         if(this.datos.user_id_two == this.currentUser.id && this.NumeroPantalla ==0){
-        
+
         this.NumeroPantalla =2;
         this.datos.display_active =1;
          this.playerService.ActualizarDatos(this.datos);
-        // this.Inicio_partida(this.datos); 
-        
+        // this.Inicio_partida(this.datos);
+
       }
   }
 
-  
+
  public cerrar(){
-    
-   
+
+
   }
 
-  
- 
+
+
   public Replay()
   {
     this.vuelta =this.datos.spin;
@@ -130,55 +134,55 @@ private currentUser: Usuario;
       this.mostrarBar = true;
 
      interval = setInterval(()=>{
-  
-  
+
+
       var box = document.getElementById('boat');
-      
-  
+
+
       if(!(screen.width-199>=this.cantidad))
       {
-  
+
         if(screen.width>=this.cantidad)
         {
-  
+
           box.style.paddingLeft= this.cantidadPadingleft + "px";
           this.cantidadPadingleft++;
-          this.cantidad++; 
+          this.cantidad++;
         }
         else
         {
           clearInterval(interval);
             if(this.NumeroPantalla==1)
             {
-              
+
               this.datos.display_active =2;
               this.playerService.ActualizarDatos(this.datos);
             }
             else
-            
+
             {
-             
+
               this.datos.display_active =1;
                this.vuelta =this.datos.spin;
-                this.datos.spin++;  
+                this.datos.spin++;
               this.playerService.ActualizarDatos(this.datos);
-              
+
             }
-           
-        
+
+
           }
-         
-  
-        
-         
+
+
+
+
       }
-      else 
+      else
       {
         box.style.left=  this.cantidad + "px";
           this.cantidad++;
       }
-      
-    },14);
+
+    },15);
   }
   else
   {
@@ -204,15 +208,15 @@ private currentUser: Usuario;
     pie.setAttribute("id",""+ ran);
     document.getElementById("content").appendChild(pie);
     //document.body.appendChild(pie);
-    
+
     // var piedra = document.getElementById('piedra');
   var obj = document.getElementById(String(""+ran.toString()));
-  
+
     var timer = setInterval(()=>
     {
-      
+
       pie = new Image();
-      
+
         if(screen.height <= posicion)
         {
           this.maxPiedra = true;
@@ -224,31 +228,31 @@ private currentUser: Usuario;
         {
           this.maxPiedra = false;
           obj.style.top=posicion+ "px";
-          
+
           posicion++;
           //var posiciones =[ [x, x+50], [posicion, posicion + 50] ];
           if(this.existePierdra)
           {
             this.checkCollisions(ran);
           }
-          
+
         }
     },10);
   }
   }
   public existePierdra = true;
-  
+
   public checkCollisions(id){
-    
+
     var piedra = $("#"+id);
     var barco = $("#boat");
-    var choque_a = { 
+    var choque_a = {
       t:piedra.position().top,
       l:piedra.position().left,
       r:piedra.position().left + piedra.width(),
       b:piedra.position().top + piedra.height()
     };
-    var choque_b = { 
+    var choque_b = {
       t:barco.position().top,
       l:barco.position().left,
       r:barco.position().left + barco.width(),
