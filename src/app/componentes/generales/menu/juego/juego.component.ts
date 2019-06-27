@@ -212,7 +212,7 @@ private currentUser: Usuario;
     // var piedra = document.getElementById('piedra');
   var obj = document.getElementById(String(""+ran.toString()));
 
-    var timer = setInterval(()=>
+    this.timer = setInterval(()=>
     {
 
       pie = new Image();
@@ -220,7 +220,7 @@ private currentUser: Usuario;
         if(screen.height <= posicion)
         {
           this.maxPiedra = true;
-          clearInterval(timer);
+          clearInterval(this.timer);
           obj.remove();
           this.existePierdra=true;
         }
@@ -241,6 +241,7 @@ private currentUser: Usuario;
   }
   }
   public existePierdra = true;
+  public timer;
 
   public checkCollisions(id){
 
@@ -261,8 +262,10 @@ private currentUser: Usuario;
     if(choque_a.l <= choque_b.r && choque_a.r >= choque_b.l && choque_a.b >= choque_b.t && choque_a.t <= choque_b.b)
     {
       this.puntuaje = this.puntuaje + 1;
-      this.existePierdra=false;
+      this.existePierdra=true;
       piedra.remove();
+      this.maxPiedra = true;
+      clearInterval(this.timer);
     }
   }
 
