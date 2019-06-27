@@ -9,6 +9,7 @@ import { AutentificacionGuard } from './guardianes/credenciales/autentificacion.
 import { MenuComponent } from './componentes/generales/menu/menu/menu.component';
 import { Role } from './interface/generales/roles';
 import { MenujuegoComponent } from './componentes/generales/menu/menujuego/menujuego.component';
+import { AdministradorComponent } from './componentes/generales/administrador/administrador.component';
 
 const appRoutes: Routes = [
   {
@@ -37,6 +38,11 @@ const appRoutes: Routes = [
   {
     path: 'perfil', component: MenuComponent,
     canActivate: [AutentificacionGuard]    
+  },
+  {
+    path: 'partidas', component: AdministradorComponent,
+    canActivate: [AutentificacionGuard]
+    //data: { roles: [Role.admin]} 
   },
   { 
     path: '**', redirectTo: '' 

@@ -15,6 +15,7 @@ import { JwtinterceptorService } from './servicios/jwtinterceptor.service';
 import { ErrorinterceptorService } from './servicios/errorinterceptor.service';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { MenujuegoComponent } from './componentes/generales/menu/menujuego/menujuego.component';
+import { AdministradorComponent } from './componentes/generales/administrador/administrador.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MenujuegoComponent } from './componentes/generales/menu/menujuego/menuj
     MenuComponent,
     JuegoComponent,
     PuntuajeComponent,
-    MenujuegoComponent
+    MenujuegoComponent,
+    AdministradorComponent
   ],
   imports: [
     BrowserModule,

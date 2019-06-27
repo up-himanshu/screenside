@@ -47,9 +47,7 @@
 					<div class="form-group">
 						<input type="submit" [disabled]="loading" value="Iniciar" class="btn float-right login_btn">
 						<img *ngIf="loading" src="assets/loading.gif" height="75" width="75">
-					</div>
-					<br>
-					<br>									
+					</div>													
 					<!--<div *ngIf="error" class="alert alert-danger">{{error}}</div>-->
 					<div  *ngIf="error"class="alert alert-danger alert-dismissible fade show" role="alert">
 							{{error}}
