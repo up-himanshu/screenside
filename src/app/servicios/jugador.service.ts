@@ -33,6 +33,9 @@ export class JugadorService {
   getpuntuajeJuegoUsuario = this.puntuajeJuegoUsuario.asObservable();
 
   private player;
+  public get playerService():any {
+    return this.player;
+  }
   conectar(){
     if(this.isConnected){
       console.log('Already Connected');

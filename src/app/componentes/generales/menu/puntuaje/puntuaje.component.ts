@@ -16,20 +16,13 @@ export class PuntuajeComponent implements OnInit {
     private authenticationService: AuthenticationService)
      { this.usuarios = authenticationService.currentUserValue; }
 
-  
-
-  
-
   ngOnInit() {
-   
-    this.playerService.verPuntuaje();
+    if(this.authenticationService.currentUserValue){
+      this.playerService.verPuntuaje();
     this.playerService.getpuntuajeJuego.subscribe(getPuntuaje  => 
       {
         this.puntuajeGlobal = getPuntuaje;
-
       })
+    }    
   }
-
-  
-
 }

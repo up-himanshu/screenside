@@ -41,8 +41,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'partidas', component: AdministradorComponent,
-    canActivate: [AutentificacionGuard]
-    //data: { roles: [Role.admin]} 
+    canActivate: [AutentificacionGuard],
+    data: { roles: [Role.admin]} 
   },
   { 
     path: '**', redirectTo: '' 
