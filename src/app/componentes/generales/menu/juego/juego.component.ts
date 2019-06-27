@@ -254,6 +254,7 @@ private currentUser: Usuario;
     {
       this.puntuaje++;
       piedra.remove();
+      this.playerService.enviarPuntuaje(this.puntuaje);
     }
   }
 
