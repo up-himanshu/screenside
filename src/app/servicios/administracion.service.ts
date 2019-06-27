@@ -22,24 +22,31 @@ export class AdministracionService {
       this.player = this.playerService.playerService;
    }
   createGame(name:string){
+    console.log(name)
     return this.http.post(`${ApiConfig.apiUrl}/createg`,{name})
   }
 
   getGames(){
-    return this.http.get<any>(`${ApiConfig.apiUrl}/updateg`)
+    //console.log(this.currentGameSubject)
+    return this.http.post<any>(`${ApiConfig.apiUrl}/getg`,{})
     .pipe(map(game => {
       this.currentGameSubject.next(game);
+      console.log(game)
+      //console.log(this.currentGameSubject)            
     }))
+    
   }
   updateGame(id:number){
     return this.http.post<any>(`${ApiConfig.apiUrl}/updateg`,{id})
   }
 
   deleteGame(id:number){
+    
     return this.http.post(`${ApiConfig.apiUrl}/deleteg`,{id})
   }
 
   //Socket
+  
   sgetGame(){
     this.player.emit('games',null);
     this.player.on('games', (allgames) => {
@@ -47,7 +54,21 @@ export class AdministracionService {
     })
   }
 
+  sresetGame(message){
+this.player.emit('')
+this.currentGameSubject.next(null);
+this.sgetGame();
+  }
+
+  sdeleteGame(message){
+    this.sgetGame();
+    this.player.emit('deletegame',{id: message})
+    
+    this.sgetGame();
+  }
    screateGame(message){     
-    this.player.emit('games',{name: message})
+     this.sgetGame();
+    this.player.emit('creategame',{name: message})    
+    this.sgetGame();
    } 
 }

@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit {
         this.userFromApi= user;
       });     
     }
-      if(this.currentUser){
+      if(this.currentUser && this.currentUser.rol == Role.user){
       this.playerService.verPuntuajeUsuario();
     this.playerService.getpuntuajeJuegoUsuario.subscribe(getPuntuaje  => 
       {

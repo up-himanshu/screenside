@@ -1,9 +1,36 @@
 <div class="container">
+  <form [formGroup]="singleForm" (ngSubmit)="createGame()">
+      <label for="correo">Nombre Partida</label>
+      <div class="input-group form-group">
+        <div class="input-group-prepend">         
+        </div>        
+        <input type="text" class="form-control" name="name"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+          <div *ngIf="f['name'].errors.required">Nombre requerido</div>
+      </div>
+      </div>
+    <button type="submit" class="btn btn-info">Crear Partida</button>      
+  </form>
+  <!--
+    <form [formGroup]="singleForm" (ngSubmit)="createGame()">
     <div class="row justify-content-md-center">
         <div class="row justify-content-center">
-          <button type="button" class="btn btn-info">Crear Partida</button>          
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Nombre Partida</span>
+                </div>                
+                <input type="text" aria-label="First name" class="form-control" formControlName="name" 
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">                               
+                <div class="invalid-feedback" *ngIf="f['name'].errors.required">Nombre requerido</div>
+              </div>          
+              
         </div>
+        <button type="button" class="btn btn-info">Crear Partida</button>      
     </div>
+    
+  </form>
+  -->
+  <br>
 <div class="row justify-content-md-center">
     <table class="table table-hover">
         <thead>
@@ -20,7 +47,8 @@
             <td>{{game.user_id_one}}</td>
             <td>{{game.user_id_two}}</td>
             <td>              
-              <button type="button" class="btn btn-danger">Eliminar</button>
+              <button type="button" class="btn btn-danger" (click)="deleteGame(game)">Eliminar</button>
+              <button type="button" class="btn btn-warning">Resetear</button>
             </td>
           </tr>          
         </tbody>
