@@ -98,7 +98,12 @@ export class JugadorService {
       
     });
   }
-  
+  enviarPuntuaje(puntos)
+  {
+    this.player.emit('savescore', {
+      puntuaje: puntos
+    })
+  }
   
 
   IniciarPartida()
