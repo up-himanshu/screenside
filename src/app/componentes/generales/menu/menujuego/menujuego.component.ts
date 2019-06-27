@@ -30,10 +30,11 @@ public partidas:any = [];
 
     public iniciarJuego(id)
     {
-      
+          
       this.playerService.IniciarPartidas(id);
-      this.playerService.verPartidas();
+      setTimeout(()=>{
       this.router.navigate(['jugar']);
+    },1000);
     }
  
 

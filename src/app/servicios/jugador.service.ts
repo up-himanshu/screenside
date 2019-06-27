@@ -55,8 +55,6 @@ export class JugadorService {
     this.player.emit('games', null);
     this.player.on('games', (event) => {
       
-      console.log(event);
-      
          this.menuJuego.next(event);
       
     });
@@ -71,7 +69,7 @@ export class JugadorService {
       idusuario:this.currentUser.id,
       id:event
     } );
-    
+   
   }
 
   verPuntuaje()
@@ -104,10 +102,16 @@ export class JugadorService {
     this.player.emit('message', {
       id: this.idPartida
     });
+
+
       this.player.on('message', (event) => {
-      console.log(event)
       
-         this.messageSource.next(JSON.parse(event))
+      if(this.idPartida == event.id)
+      {
+        console.log(event);
+        this.messageSource.next(event);
+      }
+         
 
       
     });
@@ -124,10 +128,13 @@ export class JugadorService {
 
 
   ActualizarDatos(event){
+   
     this.player.emit('data', event);
+    
     setTimeout(()=>{
+  
     this.player.emit('message', {
-      id: this.currentUser.id,
+      id: this.idPartida,
     });
   },100);
   }
