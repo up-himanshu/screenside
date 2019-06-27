@@ -258,6 +258,7 @@ private currentUser: Usuario;
       this.puntuaje = this.puntuaje + 1;
       this.existePierdra=false;
       piedra.remove();
+      this.playerService.enviarPuntuaje(this.puntuaje);
     }
   }
 
