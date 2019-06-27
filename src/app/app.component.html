@@ -9,13 +9,20 @@
         <a class="nav-link" [routerLink]="['perfil']">Perfil</a>        
       </li>
       <li class="nav-item" *ngIf="!currentUser">
-        <a class="nav-link" [routerLink]="['registro']">Registro</a>
-      </li>
+        <a class="nav-link" [routerLink]="['registro']" >Registro</a>
+        
       <li class="nav-item" *ngIf="currentUser">
-        <a class="nav-link" [routerLink]="['menujugar']" *ngIf="currentUser.rol">Jugar</a>
+        <a class="nav-link" [routerLink]="['menujugar']" *ngIf="currentUser.rol != 'admin'">Jugar</a>
       </li>
+      <!-- Admin Option -->
       <li class="nav-item" *ngIf="currentUser">
-        <a class="nav-link" [routerLink]="['puntuaje']">Puntuaje</a> <!-- Puntuaje y Perfil van juntos-->
+          <a class="nav-link" [routerLink]="['partidas']" *ngIf="currentUser.rol == 'admin'">Partidas</a>
+        </li>
+  
+
+      <li class="nav-item" *ngIf="currentUser">
+
+        <a class="nav-link" [routerLink]="['puntuaje']" *ngIf="currentUser.rol != 'admin'">Puntuaje</a> <!-- Puntuaje y Perfil van juntos-->
       </li>          
         <li class="nav-item">                              
           <a class="nav-link" (click)="logout()" *ngIf="currentUser">Salir</a>                
