@@ -60,15 +60,11 @@ private currentUser: Usuario;
       {
         console.log(this.datos);
         this.playerService.enviarPuntuaje(this.puntuaje);
-        alert("Terminaron tus turnos");
-        console.log(this.datos.spin);
-        this.vuelta = null;
-        this.NumeroPantalla=0;
-        this.buel =0;
-        this.mostrarBar = false;
-        this.barcoActivo = false;
-        this.puntuaje = 0;
-        this.router.navigate(['menujugar']);
+        this.vuelta = null
+        this.NumeroPantalla=0
+        console.log(this.datos.spin)
+        alert('TERMINARON TUS TURNOS')
+        this.router.navigate(['menujugar'])
 
         //location.reload();
       }

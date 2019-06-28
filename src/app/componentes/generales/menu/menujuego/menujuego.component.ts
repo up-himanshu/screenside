@@ -11,42 +11,42 @@ import { Usuario } from 'src/app/interface/generales/usuario';
   styleUrls: ['./menujuego.component.css']
 })
 export class MenujuegoComponent implements OnInit {
- 
+
 
 
 //Espacio de variables
 public currentUser:Usuario;
 public partidas:any = [];
- 
+
 
 //Fin de espacio de variables
 
 //Espacio constructor y de funciones
   constructor(private userService: UsuarioService, private playerService: JugadorService,
-    private authenticationService: AuthenticationService,private router:Router) 
-    { 
+    private authenticationService: AuthenticationService,private router:Router)
+    {
       this.currentUser = authenticationService.currentUserValue;
     }
 
 
     public iniciarJuego(id)
     {
-          
       this.playerService.IniciarPartidas(id);
       setTimeout(()=>{
       this.router.navigate(['jugar']);
     },1000);
     }
- 
+
 
 
 //fin de espacio de funciones
 
   //inicio de espacio de eventos
   ngOnInit() {
+
    if(this.currentUser){
     this.playerService.verPartidas()
-    this.playerService.getmenuJuego.subscribe(getPartidas  => 
+    this.playerService.getmenuJuego.subscribe(getPartidas  =>
       {
         this.partidas = getPartidas;
       })
@@ -54,7 +54,7 @@ public partidas:any = [];
   }
 
 
- 
+
   //afin del espacio de eventos
 
 }
