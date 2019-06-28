@@ -63,9 +63,9 @@ private currentUser: Usuario;
         this.vuelta = null
         this.NumeroPantalla=0
         console.log(this.datos.spin)
-        alert('TERMINARON TUS TURNOS')
-        this.router.navigate(['menujugar'])
-
+        alert('TERMINARON TUS TURNOS');
+        location.href = 'http://192.168.1.75:4200/menujugar';
+        //this.router.navigate(['menujugar']);
         //location.reload();
       }
     }
