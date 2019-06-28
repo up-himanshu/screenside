@@ -37,82 +37,72 @@ public datos:any =
 public cargando=false;
 private currentUser: Usuario;
   ngOnInit() {
-
-
     this.playerService.IniciarPartida();
-    this.playerService.currentMessage.subscribe(isOpen  => {
 
-     this.datos = isOpen ;
+      this.playerService.currentMessage.subscribe(isOpen  => {
+      this.datos = isOpen ;
 
       if (isOpen.length != 0){
-
-
-      if( this.datos.spin<=3)
+      if( this.vuelta<1)
       {
         if( this.NumeroPantalla==0 || this.NumeroPantalla==2 || this.NumeroPantalla==1 )
         {
           this.mostrarBar = false;
-            this.Pantalla();
+          this.Pantalla();
           this.cargando=true;
-
            if(this.vuelta != this.datos.spin)
            {
-                         this.Inicio_partida();
+             this.Inicio_partida();
            }
-
-            }
-
-
         }
+      }
       else
       {
         console.log(this.datos);
         this.playerService.enviarPuntuaje(this.puntuaje);
-        alert("Juego Finalizado");
+        alert("Terminaron tus turnos");
+        console.log(this.datos.spin);
+        this.vuelta = null;
+        this.NumeroPantalla=0;
+        this.buel =0;
+        this.mostrarBar = false;
+        this.barcoActivo = false;
+        this.puntuaje = 0;
         this.router.navigate(['menujugar']);
-        location.reload(); 
+
+        //location.reload();
       }
     }
     });
-
-  }
+}
 
   private Inicio_partida ()
   {
-
-
-
-        if(this.NumeroPantalla == this.datos.display_active)
-        {
-          this.barcoActivo = true;
-          this.Replay();
-
-        }
+    if(this.NumeroPantalla == this.datos.display_active)
+    {
+      this.barcoActivo = true;
+      this.Replay();
+    }
 
   }
 
-
-   public Pantalla () {
-
-
-
-
-      if(this.datos.user_id_one == this.currentUser.id  && this.NumeroPantalla ==0)
-      {
-
-        this.NumeroPantalla =1;
-        this.playerService.ActualizarDatos(this.datos);
-      }
-
-        if(this.datos.user_id_two == this.currentUser.id && this.NumeroPantalla ==0){
-
-        this.NumeroPantalla =2;
-        this.datos.display_active =1;
-         this.playerService.ActualizarDatos(this.datos);
-        // this.Inicio_partida(this.datos);
-
-      }
+public Pantalla ()
+{
+  if(this.datos.user_id_one == this.currentUser.id  && this.NumeroPantalla ==0)
+  {
+    this.NumeroPantalla =1;
+    this.playerService.ActualizarDatos(this.datos);
+    console.log('entro usuario 1');
   }
+  if(this.datos.user_id_two == this.currentUser.id && this.NumeroPantalla ==0)
+  {
+    this.NumeroPantalla =2;
+    this.datos.display_active =1;
+    this.playerService.ActualizarDatos(this.datos);
+    console.log('entro usuario 1');
+    // this.Inicio_partida(this.datos);
+  }
+}
 
 
  public cerrar(){
