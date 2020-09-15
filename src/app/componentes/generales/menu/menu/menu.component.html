@@ -1,40 +1,39 @@
 <div class="wrapper">
   <div class="page-header clear-filter" filter-color="orange">
-    <div class="page-header-image" data-parallax="true">
-    </div>
+    <div class="page-header-image" data-parallax="true"></div>
     <div class="container">
       <div class="photo-container">
-        <img src="assets/liveblue.png" alt="">
+        <img src="assets/liveblue.png" alt="" />
       </div>
-      <h3 class="title">{{currentUser.usuario}}</h3>
-      <p class="category">{{currentUser.rol | uppercase}}</p>   
-      <h2 class="category">{{currentUser.correo}}</h2>   
+      <h3 class="title">{{ currentUser.usuario }}</h3>
+      <p class="category">{{ currentUser.rol | uppercase }}</p>
+      <h2 class="category">{{ currentUser.correo }}</h2>
     </div>
   </div>
   <div class="section">
     <div class="container">
-      <div class="button-container">       
-      </div>
-  <footer class="footer footer-default">
-    <div class="container">      
-        <div class="copyright" id="copyright">
-            <p>Hecho por RUTT y Compañía</p>
-        </div>
-        <table class="table">
+      <div class="button-container"></div>
+      <footer class="footer footer-default">
+        <div class="container">
+          <div class="copyright" id="copyright">
+            <p>Created by RUTT & Comapny</p>
+          </div>
+          <table class="table">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Puntuaje</th>
+                <th>Name</th>
+                <th>Score</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of puntuajeUsuario">
-                <td scope="row">{{currentUser.usuario}}</td>
-                <td scope="row">{{item.score}}</td>
-                
+                <td scope="row">{{ currentUser.usuario }}</td>
+                <td scope="row">{{ item.score }}</td>
               </tr>
             </tbody>
           </table>
+        </div>
+      </footer>
     </div>
-  </footer>
+  </div>
 </div>
