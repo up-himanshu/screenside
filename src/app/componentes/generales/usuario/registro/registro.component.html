@@ -1,74 +1,120 @@
-<div class="container" >
-	<br>
-	<br>
+<div class="container">
+  <br />
+  <br />
 
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>REGISTRO</h3>
-			</div>
-			<div class="card-body">
-				<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-					<!--Campo Usuario-->
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">
-								<i class="material-icons">
-										supervised_user_circle
-							</i></span>
-						</div>
-						
-            <input type="text" class="form-control" placeholder="usuario" formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
-            <div *ngIf="submitted && f['usuario'].errors" class="invalid-feedback">
-              <div *ngIf="f['usuario'].errors.required">Usuario requerido</div>
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Register</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <!--Campo Usuario-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="material-icons">
+                  supervised_user_circle
+                </i></span
+              >
+            </div>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="User"
+              formControlName="usuario"
+              [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }"
+            />
+            <div
+              *ngIf="submitted && f['usuario'].errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f['usuario'].errors.required">User required</div>
+            </div>
           </div>
-					</div>
-					<!--Campo Correo-->
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">
-									<i class="material-icons">
-											alternate_email
-											</i>
-							</span>
-						</div>
-						
-            <input type="text" class="form-control" placeholder="correo" formControlName="correo" [ngClass]="{ 'is-invalid': submitted && f.correo.errors }">
-            <div *ngIf="submitted && f['correo'].errors" class="invalid-feedback">
-			  <div *ngIf="f['correo'].errors.required">Correo Requerida</div>
-			  <div *ngIf="f['correo'].errors.email">Proporcione un correo valido</div>
+          <!--Campo Correo-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="material-icons">
+                  alternate_email
+                </i>
+              </span>
+            </div>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="email"
+              formControlName="correo"
+              [ngClass]="{ 'is-invalid': submitted && f.correo.errors }"
+            />
+            <div
+              *ngIf="submitted && f['correo'].errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f['correo'].errors.required">Email required</div>
+              <div *ngIf="f['correo'].errors.email">
+                Provide a valid email
+              </div>
+            </div>
           </div>
-			</div>
-			<!--Campo Contraseña-->
-			<div class="input-group form-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">
-								<i class="material-icons">
-										lock
-										</i>
-						</span>
-					</div>
-					
-		<input type="password" class="form-control" placeholder="contraseña" formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }">
-		<div *ngIf="submitted && f['contrasena'].errors" class="invalid-feedback">
-		  <div *ngIf="f['contrasena'].errors.required">Contraseña requerida</div>
-		  <div *ngIf="f['contrasena'].errors.minlength">Contraseña debe tener almenos 6 caracteres</div>
-	  </div>
-				</div>
-					<div class="form-group">
-						<input type="submit" value="Registrar" class="btn float-right login_btn">
-					</div>
-					<br>
-					<br>
-					<div  *ngIf="error"class="alert alert-danger alert-dismissible fade show" role="alert">
-							{{error}}
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							  <span aria-hidden="true">&times;</span>
-							</button>
-						  </div>					
-				</form>
-			</div>
-		</div>
-	</div>
+          <!--Campo Contraseña-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="material-icons">
+                  lock
+                </i>
+              </span>
+            </div>
+
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              formControlName="contrasena"
+              [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }"
+            />
+            <div
+              *ngIf="submitted && f['contrasena'].errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f['contrasena'].errors.required">
+                Password required
+              </div>
+              <div *ngIf="f['contrasena'].errors.minlength">
+                Password must have at least 6 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="submit"
+              value="Register"
+              class="btn float-right login_btn"
+            />
+          </div>
+          <br />
+          <br />
+          <div
+            *ngIf="error"
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+          >
+            {{ error }}
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-

@@ -1,15 +1,20 @@
 <div class="container">
   <form [formGroup]="singleForm" (ngSubmit)="createGame()">
-      <label for="correo">Nombre Partida</label>
-      <div class="input-group form-group">
-        <div class="input-group-prepend">         
-        </div>        
-        <input type="text" class="form-control" name="name"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
-          <div *ngIf="f['name'].errors.required">Nombre requerido</div>
+    <label for="correo">Item Name</label>
+    <div class="input-group form-group">
+      <div class="input-group-prepend"></div>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        formControlName="name"
+        [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      />
+      <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+        <div *ngIf="f['name'].errors.required">Name Required</div>
       </div>
-      </div>
-    <button type="submit" class="btn btn-info">Crear Partida</button>      
+    </div>
+    <button type="submit" class="btn btn-info">Create Game</button>
   </form>
   <!--
     <form [formGroup]="singleForm" (ngSubmit)="createGame()">
@@ -30,28 +35,34 @@
     
   </form>
   -->
-  <br>
-<div class="row justify-content-md-center">
+  <br />
+  <div class="row justify-content-md-center">
     <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Nombre Juego</th>
-            <th scope="col">Jugador 1</th>
-            <th scope="col">Jugador 2</th>
-            <th scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let game of games | async">
-          <tr>            
-            <td>{{game.name}}</td>
-            <td>{{game.user_id_one}}</td>
-            <td>{{game.user_id_two}}</td>
-            <td>              
-              <button type="button" class="btn btn-danger" (click)="deleteGame(game)">Eliminar</button>
-              <!--<button type="button" class="btn btn-warning">Resetear</button>-->
-            </td>
-          </tr>          
-        </tbody>
-      </table>
-</div>
+      <thead>
+        <tr>
+          <th scope="col">Game Name</th>
+          <th scope="col">Player 1</th>
+          <th scope="col">Player 2</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let game of games | async">
+        <tr>
+          <td>{{ game.name }}</td>
+          <td>{{ game.user_id_one }}</td>
+          <td>{{ game.user_id_two }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteGame(game)"
+            >
+              Remove
+            </button>
+            <!--<button type="button" class="btn btn-warning">Resetear</button>-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

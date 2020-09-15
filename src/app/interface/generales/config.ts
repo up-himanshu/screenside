@@ -1,4 +1,4 @@
 export enum ApiConfig {
-    apiUrl = 'http://192.168.1.75:3333',
-    webSocket = '//192.168.1.75:3333'
-  }
+  apiUrl = "http://127.0.0.1:3333",
+  webSocket = "//127.0.0.1:3333"
+}

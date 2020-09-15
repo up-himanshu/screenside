@@ -1,23 +1,35 @@
-
- <img src="assets/img/cielo.jpg" alt="" id="" class="estiloCielo" *ngIf="cargando">
+<img
+  src="assets/img/cielo.jpg"
+  alt=""
+  id=""
+  class="estiloCielo"
+  *ngIf="cargando"
+/>
 <div *ngIf="cargando">
-    <h4 class="Puntuaje">Puntuaje: {{ puntuaje }}</h4> 
-    <div #content (click)="creacionPiedra($event)" class="body" id="content">
-       
-      </div>
+  <h4 class="Puntuaje">Punctuation: {{ puntuaje }}</h4>
+  <div
+    #content
+    (click)="creacionPiedra($event)"
+    class="body"
+    id="content"
+  ></div>
 
-  <img id="boat"  src="assets/img/boat.png" class="prueba2-boat-pocision" alt="error"  [ngClass]="{'prueba2-boat-index2': datos.display_active == NumeroPantalla ,'prueba2-boat-index': !(datos.display_active== NumeroPantalla ) }"  >
-<img src="assets/img/mar.jpg" class="prueba2-mar-pocision" alt="Imagen fallida">
-
-
+  <img
+    id="boat"
+    src="assets/img/boat.png"
+    class="prueba2-boat-pocision"
+    alt="error"
+    [ngClass]="{
+      'prueba2-boat-index2': datos.display_active == NumeroPantalla,
+      'prueba2-boat-index': !(datos.display_active == NumeroPantalla)
+    }"
+  />
+  <img
+    src="assets/img/mar.jpg"
+    class="prueba2-mar-pocision"
+    alt="Imagen fallida"
+  />
 </div>
 <div *ngIf="!cargando">
- Juego en proceso
+  Game in progress
 </div>
-
-
-
-
-
-
-
